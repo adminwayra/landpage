@@ -55,7 +55,7 @@
                     map.setCenter(userLocation);
 
                     // Enviar la ubicación al backend para calcular la ruta
-                    fetch('http://127.0.0.1:5000/calculate_route', {
+                    fetch('https://landpage-production-c25c.up.railway.app/calculate_route', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
