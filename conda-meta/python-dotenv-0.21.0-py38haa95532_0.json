@@ -1,0 +1,262 @@
+{
+  "build": "py38haa95532_0",
+  "build_number": 0,
+  "channel": "https://repo.anaconda.com/pkgs/main/win-64",
+  "constrains": [],
+  "depends": [
+    "click >=5.0",
+    "python >=3.8,<3.9.0a0"
+  ],
+  "extracted_package_dir": "C:\\Users\\Hp\\.conda\\pkgs\\python-dotenv-0.21.0-py38haa95532_0",
+  "features": "",
+  "files": [
+    "Lib/site-packages/dotenv/__init__.py",
+    "Lib/site-packages/dotenv/__main__.py",
+    "Lib/site-packages/dotenv/__pycache__/__init__.cpython-38.pyc",
+    "Lib/site-packages/dotenv/__pycache__/__main__.cpython-38.pyc",
+    "Lib/site-packages/dotenv/__pycache__/cli.cpython-38.pyc",
+    "Lib/site-packages/dotenv/__pycache__/ipython.cpython-38.pyc",
+    "Lib/site-packages/dotenv/__pycache__/main.cpython-38.pyc",
+    "Lib/site-packages/dotenv/__pycache__/parser.cpython-38.pyc",
+    "Lib/site-packages/dotenv/__pycache__/variables.cpython-38.pyc",
+    "Lib/site-packages/dotenv/__pycache__/version.cpython-38.pyc",
+    "Lib/site-packages/dotenv/cli.py",
+    "Lib/site-packages/dotenv/ipython.py",
+    "Lib/site-packages/dotenv/main.py",
+    "Lib/site-packages/dotenv/parser.py",
+    "Lib/site-packages/dotenv/py.typed",
+    "Lib/site-packages/dotenv/variables.py",
+    "Lib/site-packages/dotenv/version.py",
+    "Lib/site-packages/python_dotenv-0.21.0.dist-info/INSTALLER",
+    "Lib/site-packages/python_dotenv-0.21.0.dist-info/LICENSE",
+    "Lib/site-packages/python_dotenv-0.21.0.dist-info/METADATA",
+    "Lib/site-packages/python_dotenv-0.21.0.dist-info/RECORD",
+    "Lib/site-packages/python_dotenv-0.21.0.dist-info/REQUESTED",
+    "Lib/site-packages/python_dotenv-0.21.0.dist-info/WHEEL",
+    "Lib/site-packages/python_dotenv-0.21.0.dist-info/direct_url.json",
+    "Lib/site-packages/python_dotenv-0.21.0.dist-info/entry_points.txt",
+    "Lib/site-packages/python_dotenv-0.21.0.dist-info/top_level.txt",
+    "Scripts/dotenv-script.py",
+    "Scripts/dotenv.exe"
+  ],
+  "fn": "python-dotenv-0.21.0-py38haa95532_0.conda",
+  "legacy_bz2_md5": "eb635493bcf4ab7872201e423bf73c93",
+  "license": "BSD-3-Clause",
+  "license_family": "BSD",
+  "link": {
+    "source": "C:\\Users\\Hp\\.conda\\pkgs\\python-dotenv-0.21.0-py38haa95532_0",
+    "type": 1
+  },
+  "md5": "95787dfb17301e750bfff6c4c300af6a",
+  "name": "python-dotenv",
+  "package_tarball_full_path": "C:\\Users\\Hp\\.conda\\pkgs\\python-dotenv-0.21.0-py38haa95532_0.conda",
+  "paths_data": {
+    "paths": [
+      {
+        "_path": "Lib/site-packages/dotenv/__init__.py",
+        "path_type": "hardlink",
+        "sha256": "6dd00669a04039cfc7caaab2f143958de7490e050da8c4cb966a9c3ab302742f",
+        "sha256_in_prefix": "6dd00669a04039cfc7caaab2f143958de7490e050da8c4cb966a9c3ab302742f",
+        "size_in_bytes": 1298
+      },
+      {
+        "_path": "Lib/site-packages/dotenv/__main__.py",
+        "path_type": "hardlink",
+        "sha256": "3744612c6ee71c8aad9491f0c1ea48a3ecdb24f371f6c7b0082446639dbc87fe",
+        "sha256_in_prefix": "3744612c6ee71c8aad9491f0c1ea48a3ecdb24f371f6c7b0082446639dbc87fe",
+        "size_in_bytes": 129
+      },
+      {
+        "_path": "Lib/site-packages/dotenv/__pycache__/__init__.cpython-38.pyc",
+        "path_type": "hardlink",
+        "sha256": "e84425dd4471c54782ad24916c7484319b1b2afd1b0bb5c24027b866cb7a94f2",
+        "sha256_in_prefix": "e84425dd4471c54782ad24916c7484319b1b2afd1b0bb5c24027b866cb7a94f2",
+        "size_in_bytes": 1200
+      },
+      {
+        "_path": "Lib/site-packages/dotenv/__pycache__/__main__.cpython-38.pyc",
+        "path_type": "hardlink",
+        "sha256": "34665ba570a608a65035a7eb0712d482f524998c2fe5c5b5a10e8554dad451f1",
+        "sha256_in_prefix": "34665ba570a608a65035a7eb0712d482f524998c2fe5c5b5a10e8554dad451f1",
+        "size_in_bytes": 270
+      },
+      {
+        "_path": "Lib/site-packages/dotenv/__pycache__/cli.cpython-38.pyc",
+        "path_type": "hardlink",
+        "sha256": "3977fc36a153a9fb8a9afd21c41ea0845e9f361d194c956e096d016f25514776",
+        "sha256_in_prefix": "3977fc36a153a9fb8a9afd21c41ea0845e9f361d194c956e096d016f25514776",
+        "size_in_bytes": 5159
+      },
+      {
+        "_path": "Lib/site-packages/dotenv/__pycache__/ipython.cpython-38.pyc",
+        "path_type": "hardlink",
+        "sha256": "757015efae9920ebc3bea06d3945b2f7b506234ae557dfc81dd0f4bed605d6a7",
+        "sha256_in_prefix": "757015efae9920ebc3bea06d3945b2f7b506234ae557dfc81dd0f4bed605d6a7",
+        "size_in_bytes": 1440
+      },
+      {
+        "_path": "Lib/site-packages/dotenv/__pycache__/main.cpython-38.pyc",
+        "path_type": "hardlink",
+        "sha256": "4ead29ad06aab5255b1506b898f337a50fb9b6f0a889dc7cb6a3fa83cfd942b3",
+        "sha256_in_prefix": "4ead29ad06aab5255b1506b898f337a50fb9b6f0a889dc7cb6a3fa83cfd942b3",
+        "size_in_bytes": 9894
+      },
+      {
+        "_path": "Lib/site-packages/dotenv/__pycache__/parser.cpython-38.pyc",
+        "path_type": "hardlink",
+        "sha256": "bc00e9b45c8aca53215cc15631330e58e360e1a7aa95dc0b9fb9316c537c9905",
+        "sha256_in_prefix": "bc00e9b45c8aca53215cc15631330e58e360e1a7aa95dc0b9fb9316c537c9905",
+        "size_in_bytes": 5831
+      },
+      {
+        "_path": "Lib/site-packages/dotenv/__pycache__/variables.cpython-38.pyc",
+        "path_type": "hardlink",
+        "sha256": "539678e5028e41c2f83578b14af209fcb5f41605780ec2fc34ba4bd82452e135",
+        "sha256_in_prefix": "539678e5028e41c2f83578b14af209fcb5f41605780ec2fc34ba4bd82452e135",
+        "size_in_bytes": 3466
+      },
+      {
+        "_path": "Lib/site-packages/dotenv/__pycache__/version.cpython-38.pyc",
+        "path_type": "hardlink",
+        "sha256": "80f15e2cb7dccc1c58b434d1c1ef6248f10ed3da73c96771826edc94141287d2",
+        "sha256_in_prefix": "80f15e2cb7dccc1c58b434d1c1ef6248f10ed3da73c96771826edc94141287d2",
+        "size_in_bytes": 148
+      },
+      {
+        "_path": "Lib/site-packages/dotenv/cli.py",
+        "path_type": "hardlink",
+        "sha256": "007acc80ca3f4eb0d8cb2620eece14fa6d871a933b84398e02d77ff647446528",
+        "sha256_in_prefix": "007acc80ca3f4eb0d8cb2620eece14fa6d871a933b84398e02d77ff647446528",
+        "size_in_bytes": 5383
+      },
+      {
+        "_path": "Lib/site-packages/dotenv/ipython.py",
+        "path_type": "hardlink",
+        "sha256": "6af23a69ecff4719c1a6d62072122ab85d934a0288f863a1637a698aedd5b961",
+        "sha256_in_prefix": "6af23a69ecff4719c1a6d62072122ab85d934a0288f863a1637a698aedd5b961",
+        "size_in_bytes": 1303
+      },
+      {
+        "_path": "Lib/site-packages/dotenv/main.py",
+        "path_type": "hardlink",
+        "sha256": "438364ba12ff8bb0b0935940bae149e3e12ad0cc7ac04dab96d63ac094f6c2ea",
+        "sha256_in_prefix": "438364ba12ff8bb0b0935940bae149e3e12ad0cc7ac04dab96d63ac094f6c2ea",
+        "size_in_bytes": 11926
+      },
+      {
+        "_path": "Lib/site-packages/dotenv/parser.py",
+        "path_type": "hardlink",
+        "sha256": "1cc074555cbf7de8ccb8667f15d8a0ce59ff74113d9ec000699ee8970a00652c",
+        "sha256_in_prefix": "1cc074555cbf7de8ccb8667f15d8a0ce59ff74113d9ec000699ee8970a00652c",
+        "size_in_bytes": 5298
+      },
+      {
+        "_path": "Lib/site-packages/dotenv/py.typed",
+        "path_type": "hardlink",
+        "sha256": "f0f8f2675695a10a5156fb7bd66bafbaae6a13e8d315990af862c792175e6e67",
+        "sha256_in_prefix": "f0f8f2675695a10a5156fb7bd66bafbaae6a13e8d315990af862c792175e6e67",
+        "size_in_bytes": 26
+      },
+      {
+        "_path": "Lib/site-packages/dotenv/variables.py",
+        "path_type": "hardlink",
+        "sha256": "1edbd830e3b2ca8806199bfe6241b378c38ab68befaaa1b387f90807dc6e02da",
+        "sha256_in_prefix": "1edbd830e3b2ca8806199bfe6241b378c38ab68befaaa1b387f90807dc6e02da",
+        "size_in_bytes": 2404
+      },
+      {
+        "_path": "Lib/site-packages/dotenv/version.py",
+        "path_type": "hardlink",
+        "sha256": "fab78d897af6e67514ede9bbfc8289ce2982235d16e2703ca2ec4088eaf815a4",
+        "sha256_in_prefix": "fab78d897af6e67514ede9bbfc8289ce2982235d16e2703ca2ec4088eaf815a4",
+        "size_in_bytes": 23
+      },
+      {
+        "_path": "Lib/site-packages/python_dotenv-0.21.0.dist-info/INSTALLER",
+        "path_type": "hardlink",
+        "sha256": "d0edee15f91b406f3f99726e44eb990be6e34fd0345b52b910c568e0eef6a2a8",
+        "sha256_in_prefix": "d0edee15f91b406f3f99726e44eb990be6e34fd0345b52b910c568e0eef6a2a8",
+        "size_in_bytes": 5
+      },
+      {
+        "_path": "Lib/site-packages/python_dotenv-0.21.0.dist-info/LICENSE",
+        "path_type": "hardlink",
+        "sha256": "d27209ab3d162782a8f8e3872b9b353c49e092c9aa467a64522883407d8d1030",
+        "sha256_in_prefix": "d27209ab3d162782a8f8e3872b9b353c49e092c9aa467a64522883407d8d1030",
+        "size_in_bytes": 4600
+      },
+      {
+        "_path": "Lib/site-packages/python_dotenv-0.21.0.dist-info/METADATA",
+        "path_type": "hardlink",
+        "sha256": "adddc17731eafbe926fd17429572bf57ed52dbd467010d5e0336a0ed27215965",
+        "sha256_in_prefix": "adddc17731eafbe926fd17429572bf57ed52dbd467010d5e0336a0ed27215965",
+        "size_in_bytes": 20683
+      },
+      {
+        "_path": "Lib/site-packages/python_dotenv-0.21.0.dist-info/RECORD",
+        "path_type": "hardlink",
+        "sha256": "53317d85d654f3b8092c5bb04417108f4bffd6e43358714b084b92764104ee14",
+        "sha256_in_prefix": "53317d85d654f3b8092c5bb04417108f4bffd6e43358714b084b92764104ee14",
+        "size_in_bytes": 1926
+      },
+      {
+        "_path": "Lib/site-packages/python_dotenv-0.21.0.dist-info/REQUESTED",
+        "path_type": "hardlink",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "sha256_in_prefix": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size_in_bytes": 0
+      },
+      {
+        "_path": "Lib/site-packages/python_dotenv-0.21.0.dist-info/WHEEL",
+        "path_type": "hardlink",
+        "sha256": "1b5e87e00dc87a84269cead8578b9e6462928e18a95f1f3373c9eef451a5bcc0",
+        "sha256_in_prefix": "1b5e87e00dc87a84269cead8578b9e6462928e18a95f1f3373c9eef451a5bcc0",
+        "size_in_bytes": 92
+      },
+      {
+        "_path": "Lib/site-packages/python_dotenv-0.21.0.dist-info/direct_url.json",
+        "path_type": "hardlink",
+        "sha256": "96d47b4b9268c5b67722ea740ccd0391a1b9ee6246e7021d86093d2c4f17ade6",
+        "sha256_in_prefix": "96d47b4b9268c5b67722ea740ccd0391a1b9ee6246e7021d86093d2c4f17ade6",
+        "size_in_bytes": 93
+      },
+      {
+        "_path": "Lib/site-packages/python_dotenv-0.21.0.dist-info/entry_points.txt",
+        "path_type": "hardlink",
+        "sha256": "c91975ac26ecc1bd6741343f8194650b0e507da6f3b541a77c658b8655c535d2",
+        "sha256_in_prefix": "c91975ac26ecc1bd6741343f8194650b0e507da6f3b541a77c658b8655c535d2",
+        "size_in_bytes": 47
+      },
+      {
+        "_path": "Lib/site-packages/python_dotenv-0.21.0.dist-info/top_level.txt",
+        "path_type": "hardlink",
+        "sha256": "7b2a941f848724dafa6a139897122e9d3af85e29c4f19e5a8d62ddacadebd03f",
+        "sha256_in_prefix": "7b2a941f848724dafa6a139897122e9d3af85e29c4f19e5a8d62ddacadebd03f",
+        "size_in_bytes": 7
+      },
+      {
+        "_path": "Scripts/dotenv-script.py",
+        "path_type": "hardlink",
+        "sha256": "1fba16fef6f98c76a351dd420d224135670d05acbf8b94d1cbf535928b4ef860",
+        "sha256_in_prefix": "1fba16fef6f98c76a351dd420d224135670d05acbf8b94d1cbf535928b4ef860",
+        "size_in_bytes": 202
+      },
+      {
+        "_path": "Scripts/dotenv.exe",
+        "path_type": "hardlink",
+        "sha256": "5ea569f2b5bc9c273351641a1a3c52821ce2a9370bc8202f0247c793ebd8a618",
+        "sha256_in_prefix": "5ea569f2b5bc9c273351641a1a3c52821ce2a9370bc8202f0247c793ebd8a618",
+        "size_in_bytes": 41984
+      }
+    ],
+    "paths_version": 1
+  },
+  "requested_spec": "python-dotenv",
+  "sha256": "27521dbd6df0f0215641fe52e760c059c9b7179195bd8ed73074fbf252f7a34d",
+  "size": 53178,
+  "subdir": "win-64",
+  "timestamp": 1669132805177,
+  "track_features": "",
+  "url": "https://repo.anaconda.com/pkgs/main/win-64/python-dotenv-0.21.0-py38haa95532_0.conda",
+  "version": "0.21.0"
+}

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruta a Dejavu</title>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2MFSuZJdNKzp1GwgBvOO8riY4X5BUP7k&libraries=places&callback=initMap"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #FFA500;
+            color: #ffffff;
+        }
+        #map {
+            height: 600px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Ruta a Dejavu</h1>
+    <div id="map"></div>
+    <form id="routeForm">
+        <br><br>
+        <label for="distance">Distancia:</label>
+        <input type="text" id="distance" readonly><br><br>
+    
+        <label for="duration">Tiempo de viaje:</label>
+        <input type="text" id="duration" readonly><br><br>
+    </form>
+
+    <script>
+        let map, directionsService, directionsRenderer;
+
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: -12.0764, lng: -77.0638 },
+                zoom: 15
+            });
+
+            directionsService = new google.maps.DirectionsService();
+            directionsRenderer = new google.maps.DirectionsRenderer();
+            directionsRenderer.setMap(map);
+
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(position => {
+                    const userLocation = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+                    console.log('User Location:', userLocation); // Agrega esta línea
+                    map.setCenter(userLocation);
+
+                    // Enviar la ubicación al backend para calcular la ruta
+                    fetch('http://127.0.0.1:5000/calculate_route', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            userLocation: userLocation
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Response from server:', data); // Agrega esta línea
+                        if (data.status === "OK") {
+                            const destinationCoords = { lat: data.destination.lat, lng: data.destination.lng };
+                            directionsService.route({
+                                origin: userLocation,
+                                destination: destinationCoords,
+                                travelMode: google.maps.TravelMode.DRIVING
+                            }, (response, status) => {
+                                if (status === 'OK') {
+                                    directionsRenderer.setDirections(response);
+                                    const route = response.routes[0];
+                                    document.getElementById('distance').value = route.legs[0].distance.text;
+                                    document.getElementById('duration').value = route.legs[0].duration.text;
+                                } else {
+                                    window.alert('No se pudo encontrar la ruta: ' + status);
+                                }
+                            });
+                        } else {
+                            window.alert('No se pudo calcular la ruta: ' + data.error);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+                }, () => {
+                    handleLocationError(true);
+                });
+            } else {
+                handleLocationError(false);
+            }
+        }
+
+        function handleLocationError(browserHasGeolocation) {
+            const errorMsg = browserHasGeolocation ?
+                'Error: El servicio de geolocalización ha fallado.' :
+                'Error: Su navegador no soporta geolocalización.';
+            window.alert(errorMsg);
+        }
+
+        window.initMap = initMap;
+    </script>
+</body>
+</html>
