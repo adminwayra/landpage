@@ -6,7 +6,6 @@ from dotenv import load_dotenv
 
 load_dotenv('entorno.env')
 
-
 app = Flask(__name__)
 CORS(app)
 
@@ -14,7 +13,6 @@ RESTAURANTE_UBICACION = {
     "lat": -12.0764,
     "lng": -77.0638
 }
-
 
 @app.route('/calculate_route', methods=['POST'])
 def calculate_route():
@@ -24,7 +22,6 @@ def calculate_route():
         return jsonify({'error': 'Ubicación del usuario no proporcionada'}), 400
     
     user_location = data['userLocation']
-    
 
     if 'lat' not in user_location or 'lng' not in user_location:
         return jsonify({'error': 'Coordenadas inválidas'}), 400
@@ -58,6 +55,5 @@ def calculate_route():
         return jsonify({'error': 'Error en la comunicación con la API de Google', 'details': str(e)}), 500
 
 if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host='0.0.0.0', port=port)
     app.run(debug=True)
+
