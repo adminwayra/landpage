@@ -1,5 +1,4 @@
 from flask import Flask, request, jsonify
-from flask_cors import CORS
 import requests
 import os
 from dotenv import load_dotenv
@@ -7,7 +6,6 @@ from dotenv import load_dotenv
 load_dotenv('entorno.env')
 
 app = Flask(__name__)
-CORS(app)
 
 RESTAURANTE_UBICACION = {
     "lat": -12.0764,
@@ -56,4 +54,3 @@ def calculate_route():
 
 if __name__ == '__main__':
     app.run(debug=True)
-
