@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Texto a Audio en Canvas</title>
+    <style>
+        canvas {
+            border: 1px solid black;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Convertir Texto a Audio y Visualizar en Canvas</h1>
+    <input type="text" id="textInput" placeholder="Escribe algo aquí" />
+    <button id="speakButton">Hablar</button>
+    <button id="downloadButton" style="display:none;">Descargar Audio</button>
+    <canvas id="audioCanvas" width="600" height="200"></canvas>
+
+    <script>
+        const canvas = document.getElementById('audioCanvas');
+        const ctx = canvas.getContext('2d');
+        const textInput = document.getElementById('textInput');
+        const downloadButton = document.getElementById('downloadButton');
+
+        // Función para hablar el texto
+        function speak(text) {
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.onstart = () => draw();
+            speechSynthesis.speak(utterance);
+
+            // Lógica para la descarga (necesitarías un archivo pregrabado)
+            downloadButton.style.display = 'block';
+            downloadButton.onclick = () => downloadAudio(text);
+        }
+
+        // Función para descargar el audio (simulación)
+        function downloadAudio(text) {
+            const blob = new Blob([text], { type: 'audio/wav' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'audio.wav';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // Dibujar en el canvas
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = 'lightblue';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = 'blue';
+            ctx.font = '24px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText(textInput.value || "Diciendo...", canvas.width / 2, canvas.height / 2);
+
+            requestAnimationFrame(draw);
+        }
+
+        // Evento del botón
+        document.getElementById('speakButton').addEventListener('click', () => {
+            const text = textInput.value;
+            if (text) {
+                speak(text);
+            }
+        });
+
+        // Para detener el dibujo cuando se detiene el habla
+        speechSynthesis.onend = () => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        };
+    </script>
+</body>
+</html>

@@ -1,56 +1,44 @@
-from flask import Flask, request, jsonify
-import requests
+from flask import Flask, render_template, send_from_directory, request
 import os
+from gtts import gTTS
 from dotenv import load_dotenv
 
-load_dotenv('entorno.env')
-
+load_dotenv('entorno.env')  # Cargar variables de entorno desde .env
 app = Flask(__name__)
 
-RESTAURANTE_UBICACION = {
-    "lat": -12.0764,
-    "lng": -77.0638
-}
+# Asegúrate de que la carpeta 'static' exista
+STATIC_FOLDER = 'static'
 
-@app.route('/calculate_route', methods=['POST'])
-def calculate_route():
-    data = request.json
+@app.route('/text-to-speech', methods=['POST'])
+def text_to_speech():
+    text = request.json.get('text')  # Corregido para obtener el texto del JSON
 
-    if 'userLocation' not in data:
-        return jsonify({'error': 'Ubicación del usuario no proporcionada'}), 400
-    
-    user_location = data['userLocation']
+    if not text:
+        return {'error': 'No text provided'}, 400
 
-    if 'lat' not in user_location or 'lng' not in user_location:
-        return jsonify({'error': 'Coordenadas inválidas'}), 400
+    # Generar el archivo de audio
+    audio_file = os.path.join(STATIC_FOLDER, 'audio.mp3')
+    tts = gTTS(text, lang='es')
+    tts.save(audio_file)
 
-    directions_api_url = 'https://maps.googleapis.com/maps/api/directions/json'
-    params = {
-        'origin': f"{user_location['lat']},{user_location['lng']}",
-        'destination': f"{RESTAURANTE_UBICACION['lat']},{RESTAURANTE_UBICACION['lng']}",
-        'key': os.getenv('GOOGLE_MAPS_API_KEY')
-    }
+    return {'message': 'Audio generated', 'file': 'audio.mp3'}
 
-    try:
-        response = requests.get(directions_api_url, params=params)
-        response.raise_for_status()
-        directions = response.json()
+@app.route('/static/<path:filename>')
+def static_files(filename):
+    return send_from_directory(STATIC_FOLDER, filename)
 
-        if directions['status'] == 'OK':
-            route = directions['routes'][0]
-            distance = route['legs'][0]['distance']['text']
-            duration = route['legs'][0]['duration']['text']
-            return jsonify({
-                'destination': RESTAURANTE_UBICACION,
-                'distance': distance,
-                'duration': duration,
-                'status': 'OK'
-            })
-        else:
-            return jsonify({'error': 'No se pudo calcular la ruta', 'status': directions['status']}), 400
+@app.route('/')
+def inicio():
+    return render_template('inicio.html')
 
-    except requests.exceptions.RequestException as e:
-        return jsonify({'error': 'Error en la comunicación con la API de Google', 'details': str(e)}), 500
+@app.route('/mostrar-ruta')
+def mostrar_ruta():
+    api_key = os.getenv('GOOGLE_MAPS_API_KEY')
+    return render_template('mostrar-ruta.html', api_key=api_key)
+
+@app.route('/nuestra-carta')
+def carta():
+    return render_template('carta.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

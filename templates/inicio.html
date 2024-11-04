@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenido a Dejavu Food & Drinks</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        body {
+            background-color: orange; /* Fondo naranja */
+            text-align: center;
+            padding: 50px;
+            overflow-x: hidden; /* Evita el desplazamiento horizontal */
+        }
+        .container {
+            max-width: 100%; /* Asegura que la contenedor ocupe todo el ancho */
+            overflow: auto; /* Permite el desplazamiento vertical */
+        }
+        .floating-image {
+            position: relative;
+            display: inline-block; /* Permite el movimiento sin ocupar todo el ancho */
+            max-width: 80%; /* Limita el ancho máximo al 80% del contenedor */
+            height: auto; /* Mantiene la proporción de la imagen */
+            animation: move 5s infinite alternate; /* Animación de movimiento */
+        }
+        @keyframes move {
+            0% {
+                transform: translate(0, 0); /* Posición inicial */
+            }
+            50% {
+                transform: translate(20px, -20px); /* Movimiento hacia la derecha y arriba */
+            }
+            100% {
+                transform: translate(0, 0); /* Regresar a la posición inicial */
+            }
+        }
+        .button-container {
+            margin-top: 20px;
+        }
+        button {
+            background-color: yellow;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px; /* Bordes redondeados para los botones */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bienvenido a Dejavu Food & Drinks</h1>
+        <h2>Comida rápida de calidad y a un precio justo</h2>
+        <img class="floating-image" src="{{ url_for('static', filename='halloween.jpeg') }}" alt="Dejavu Food & Drinks" />
+        <div class="button-container">
+            <button onclick="window.location.href='/mostrar-ruta'">Cómo llegar</button>
+            <button onclick="window.location.href='/nuestra-carta'">Nuestra Carta</button>
+        </div>
+    </div>
+</body>
+</html>

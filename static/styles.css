@@ -1,0 +1,45 @@
+/* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #FFA500; /* Fondo naranja */
+    color: white; /* Color de texto en blanco */
+    text-align: center;
+    padding: 20px;
+}
+
+h1 {
+    color: #fff; /* Color de texto del encabezado */
+    font-size: 2.5em; /* Tamaño del encabezado */
+    margin-bottom: 10px; /* Espacio debajo del encabezado */
+}
+
+h2 {
+    color: #fff; /* Color del subtítulo */
+    font-size: 1.5em; /* Tamaño del subtítulo */
+    margin: 10px 0; /* Espacio alrededor del subtítulo */
+}
+
+img {
+    max-width: 100%; /* Imágenes responsivas */
+    height: auto; /* Mantiene la proporción */
+    margin: 20px 0; /* Espacio arriba y abajo de la imagen */
+}
+
+.button {
+    background-color: yellow; /* Color de fondo de los botones */
+    color: white; /* Color de texto de los botones */
+    border: none; /* Sin borde */
+    padding: 10px 20px; /* Espaciado interno */
+    text-align: center; /* Centrar el texto */
+    text-decoration: none; /* Sin subrayado */
+    display: inline-block; /* Mostrar en línea */
+    margin: 10px 5px; /* Espaciado entre botones */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cambiar el cursor al pasar el ratón */
+    transition: background-color 0.3s; /* Transición suave */
+}
+
+.button:hover {
+    background-color: yellowgreen; /* Color al pasar el ratón */
+}
