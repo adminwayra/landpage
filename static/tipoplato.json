@@ -1,0 +1,48 @@
+[
+		
+    {
+        "idtipoPlato": 1,
+        "nombre": "Sabor & Frescura"
+        
+    },
+    {
+        "idtipoPlato": 32,
+        "nombre": "Papas fritas Amarillas"
+        
+    },
+    {
+        "idtipoPlato": 41,
+        "nombre": "Me Quedo Contigo"
+        
+    },
+    {
+        "idPlato": 42,
+        "nombre": "Trío de Infarto"
+        
+    },
+    {
+        "idPlato": 43,
+        "nombre": "02 Cheese Burgers"
+        
+    },
+    {
+        "idPlato": 44,
+        "nombre": "Tequeño Te Quiero Con Alas"
+       
+    },
+    {
+        "idPlato": 45,
+        "nombre": "Tu Calientito Preferido"
+        
+    },
+    {
+        "idPlato": 46,
+        "nombre": "Sacia Tu Hambre"
+        
+    },
+    {
+        "idPlato": 47,
+        "nombre": "Mi Jama Preferida"
+        
+    }
+]

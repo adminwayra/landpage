@@ -1,0 +1,75 @@
+[
+		
+    {
+        "idPlato": 48,
+        "nombre": "Sabor & Frescura",
+        "descPlato": "01 Cheese Burguer,Porción de deliciosas papa crocantes amarillas y un jugo de frutas(fresa, naraja ó límon)",
+        "dcto": 10,
+        "precioVenta": 25,
+        "imagen": "sabor_frescura.jpg"
+    },
+    {
+        "idPlato": 32,
+        "nombre": "Papas fritas Amarillas",
+        "descPlato": "Porción de deliciosas papa crocantes amarillas y acompañadas con cremas caseras",
+        "dcto": 20,
+        "precioVenta": 14,
+        "imagen": "papitasFritas.jpg"
+    },
+    {
+        "idPlato": 41,
+        "nombre": "Me Quedo Contigo",
+        "descPlato": "01 deliciosa Cheese Burguer. 01 porción de papas fritas amarillas onduladas, 01 bebida de medio litro.",
+        "dcto": 20,
+        "precioVenta": 25,
+        "imagen": "meQuedoContigo.jpg"
+    },
+    {
+        "idPlato": 42,
+        "nombre": "Trío de Infarto",
+        "descPlato": "Porción de 06 deliciosas alitas BBQ, 01 porción de salchicha frankfurter, 01 porción de deliciosas papas fritas amarillas onduladas, 01 hamburguesa Clasica.",
+        "dcto": 20,
+        "precioVenta": 40,
+        "imagen": "trioInfarto.jpg"
+    },
+    {
+        "idPlato": 43,
+        "nombre": "02 Cheese Burgers",
+        "descPlato": "02 Hamburguesas de 150 gr de carne, Queso Cheddar, tomate, lechuga y cebolla en rodajas. Además de 01 porción de deliciosas papas fritas amarillas onduladas.",
+        "dcto": 20,
+        "precioVenta": 40,
+        "imagen": "partidaDoble.jpg"
+    },
+    {
+        "idPlato": 44,
+        "nombre": "Tequeño Te Quiero Con Alas",
+        "descPlato": "01 Cheese Buguer, 01 porción de deliciosas papas fritas amarillas onduladas y 06 tequeños rellenos con queso",
+        "dcto": 20,
+        "precioVenta": 30,
+        "imagen": "tequenoAlas.jpg"
+    },
+    {
+        "idPlato": 45,
+        "nombre": "Tu Calientito Preferido",
+        "descPlato": "01 cheese burger + 01 delicioso Capuccino.",
+        "dcto": 20,
+        "precioVenta": 25,
+        "imagen": "loncheEjecutivo.jpg"
+    },
+    {
+        "idPlato": 46,
+        "nombre": "Sacia Tu Hambre",
+        "descPlato": "01 Cheese Burguer, 01 porción de papas fritas amarillas onduladas y 06 tequeños rellenos con queso.",
+        "dcto": 20,
+        "precioVenta": 40,
+        "imagen": "saciahambre.jpg"
+    },
+    {
+        "idPlato": 47,
+        "nombre": "Mi Jama Preferida",
+        "descPlato": "01 hamburguesa de 150gr de carne, 01 porción de Papas amarillas fritas onduladas, Plátano Frito, Huevo Frito, Arroz blanco y abundantes cremas, y a eso súmale una gaseosa de medio litro.",
+        "dcto": 20,
+        "precioVenta": 25,
+        "imagen": "pobre.jpg"
+    }
+]

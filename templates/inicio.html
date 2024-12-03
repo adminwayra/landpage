@@ -1,61 +1,556 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bienvenido a Dejavu Food & Drinks</title>
+    <meta name="description" content="aprovecha nuestras grandes ofertas todos los dias">
+    <meta name="keywords" content="combos,super ofertas,pide ya, whatsapp, pedidos ya, clientes, Dejavu">
+    <title>Restaurante de comida rápida Dejavu Food & Drinks</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <!-- Agregar el favicon -->
+    <link rel="icon" href="{{ url_for('static', filename='logodejavu.webp') }}" type="image/x-icon">
     <style>
         body {
-            background-color: orange; /* Fondo naranja */
-            text-align: center;
-            padding: 50px;
-            overflow-x: hidden; /* Evita el desplazamiento horizontal */
+            
+            padding: 10;
+            /* Eliminar el padding en el body */
+            overflow-x: hidden;
+            /* Evita el desplazamiento horizontal */
+            overflow-y: auto;
+            /* Permite desplazamiento vertical */
+            margin-top: 0;
+            /* Eliminar el espacio superior */
         }
-        .container {
-            max-width: 100%; /* Asegura que la contenedor ocupe todo el ancho */
-            overflow: auto; /* Permite el desplazamiento vertical */
-        }
-        .floating-image {
+
+       
+        /* Estilo para el contenedor del carrusel */
+        .carousel-container {
+            margin-top: 10px;
+            /* Reducido para ganar más espacio arriba */
+            overflow: hidden;
+            /* Oculta el contenido fuera del contenedor */
+            width: 100%;
+            /* El ancho se adapta al contenedor */
             position: relative;
-            display: inline-block; /* Permite el movimiento sin ocupar todo el ancho */
-            max-width: 80%; /* Limita el ancho máximo al 80% del contenedor */
-            height: auto; /* Mantiene la proporción de la imagen */
-            animation: move 5s infinite alternate; /* Animación de movimiento */
         }
-        @keyframes move {
-            0% {
-                transform: translate(0, 0); /* Posición inicial */
-            }
-            50% {
-                transform: translate(20px, -20px); /* Movimiento hacia la derecha y arriba */
-            }
-            100% {
-                transform: translate(0, 0); /* Regresar a la posición inicial */
-            }
+
+        .carousel {
+            display: flex;
+            flex-direction: row;
+            transition: transform 2300ms ease-in-out;
+            /* Desplazamiento suave */
         }
+
+        .carousel-item {
+            width: 100%;
+            /* Ocupa todo el contenedor */
+            flex-shrink: 0;
+            /* No se encoge al cambiar de tamaño */
+            position: relative;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+            /* Ajusta la imagen para que cubra el contenedor sin distorsionarse */
+        }
+
+        /* Estilo para el nombre, precio y descuento dentro del carrusel */
+        .text-overlay {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background-color: rgba(0, 0, 0, 0.5);
+            /* Fondo semitransparente */
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .text-overlay h3 {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .text-overlay .price {
+            font-size: 18px;
+            color: yellow;
+            text-decoration: line-through;
+            /* La raya en el precio original */
+        }
+
+        .text-overlay .discount-price {
+            font-size: 20px;
+            color: yellow;
+        }
+
+        /* Estilo para la descripción del producto debajo del carrusel */
+        .carousel-description {
+            color: white;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        .carousel-description.show {
+            display: block;
+            opacity: 1;
+        }
+
+        /* Estilo de los botones */
         .button-container {
             margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
+
         button {
             background-color: yellow;
             padding: 10px 20px;
             font-size: 16px;
             cursor: pointer;
             border: none;
-            border-radius: 5px; /* Bordes redondeados para los botones */
+            border-radius: 5px;
+            margin: 10px 0;
+            width: 200px;
+        }
+
+        .order-button-pedidos {
+            background-color: #FF5E00;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            margin-top: 10px;
+            text-decoration: none;
+            display: inline-block;
+            width: 80%;
+        }
+
+        /* Estilo para el botón flotante de WhatsApp */
+        .whatsapp-button {
+            position: fixed;
+            top: 300px;
+            /* Mueve el botón a la parte superior */
+            right: 20px;
+            /* Lo mantiene en la esquina derecha */
+            background-color: #25D366;
+            color: white;
+            border-radius: 50%;
+            /* Redondea completamente el botón */
+            padding: 15px;
+            /* Reduce el padding para un tamaño más adecuado */
+            font-size: 18px;
+            /* Aumenta el tamaño del texto */
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            z-index: 9999;
+            width: 60px;
+            /* Define el ancho para hacer el botón más grande y redondo */
+            height: 60px;
+            /* Define la altura para que sea igual al ancho */
+            /* Aplicamos la animación de parpadeo */
+            animation: blink 1.5s infinite;
+            /* Parpadeo cada 1.5 segundos */
+        }
+
+        .whatsapp-button:hover {
+            background-color: #128C7E;
+        }
+
+        .whatsapp-button img {
+            width: 50%;
+            /* Ajusta el tamaño del logo dentro del círculo */
+            height: 50%;
+            /* Ajusta la altura del logo dentro del círculo */
+        }
+
+        .whatsapp-button span {
+            position: absolute;
+            bottom: -25px;
+            font-size: 12px;
+            font-weight: bold;
+            background-color: #25D366;
+            color: white;
+            padding: 5px;
+            border-radius: 10px;
+        }
+
+        /* Estilo para dispositivos móviles */
+        @media (max-width: 750px) {
+
+            /* Mostrar el ícono del menú (hamburguesa) solo en pantallas pequeñas */
+            .menu-icon {
+                display: block;
+                /* Muestra el icono en pantallas pequeñas */
+            }
+
+            /* Navbar: los enlaces se ocultan en dispositivos pequeños */
+            .navbar-links {
+                display: none;
+                /* Oculta los enlaces en pantallas pequeñas */
+            }
+
+            /* Ajustar el logo a la izquierda */
+            .navbar img {
+                margin-left: 10px;
+                width: 60px;
+                /* Logo más pequeño en dispositivos móviles */
+                height: auto;
+                /* Mantener las proporciones */
+            }
+
+            /* Mostrar el drawer cuando el menú esté abierto */
+            .drawer.open {
+                right: 0;
+                /* El drawer se desliza a la vista */
+            }
+
+            /* Navbar */
+            .navbar {
+                flex-direction: row;
+                /* Disposición en fila para móviles */
+                justify-content: flex-end;
+                /* Alinea los elementos al principio */
+                align-items: left;
+                /* Alineación central */
+                width: 100%;
+                height: auto;
+                /* Altura automática según el contenido */
+            }
+
+            .navbar img {
+                width: 60px;
+                /* Mantener el logo al 20% en móviles */
+                height: auto;
+                /* Mantener las proporciones */
+                margin-left: 10px;
+                /* Espaciado a la izquierda */
+            }
+
+            /* Reducir tamaño de los títulos en el cuerpo */
+            h2,
+            h3 {
+                font-size: 6vw;
+                /* 6% del ancho de la pantalla */
+                padding: 5px;
+                font-weight: bold;
+                white-space: normal;
+                overflow: visible;
+            }
+
+            /* Ajuste en los botones */
+            button {
+                width: 80%;
+                /* Botones más estrechos en móviles */
+                font-size: 14px;
+                /* Fuente más pequeña */
+                padding: 12px 0;
+                /* Padding ajustado */
+            }
+
+            /* Ajuste en las descripciones */
+            .carousel-description {
+                font-size: 14px;
+                /* Tamaño de texto más pequeño para móviles */
+            }
+
+            /* Ajuste en el tamaño del botón flotante de WhatsApp */
+            .whatsapp-button {
+                top: 100px;
+                /* Mueve el botón hacia arriba */
+                right: 10px;
+                /* Menos espacio a la derecha */
+                width: 50px;
+                /* Botón más pequeño */
+                height: 50px;
+                /* Botón cuadrado */
+                padding: 10px;
+                /* Padding reducido */
+            }
+
+            .whatsapp-button img {
+                width: 50px;
+                /* Logo de WhatsApp más pequeño */
+                height: 50px;
+                /* Mantiene proporciones */
+            }
+
+            .whatsapp-button span {
+                font-size: 10px;
+                /* Texto más pequeño */
+                bottom: -20px;
+                /* Ajustar la posición del texto */
+            }
+
+            /* Carrusel: ajustar imagen y texto */
+            .carousel-item img {
+                width: 100%;
+                /* Asegura que la imagen ocupe todo el ancho */
+                height: auto;
+            }
+
+            .text-overlay {
+                bottom: 10px;
+                /* Eleva un poco el texto */
+                left: 10px;
+                padding: 5px;
+                /* Reduce el padding del overlay */
+            }
+
+            .text-overlay h3 {
+                font-size: 16px;
+                /* Fuente más pequeña */
+            }
+
+            .text-overlay .price {
+                font-size: 18px;
+                /* Precio más pequeño */
+            }
+
+            .text-overlay .discount-price {
+                font-size: 20px;
+                /* Descuento más pequeño */
+            }
         }
     </style>
+   
 </head>
+
 <body>
-    <div class="container">
-        <h1>Bienvenido a Dejavu Food & Drinks</h1>
-        <h2>Comida rápida de calidad y a un precio justo</h2>
-        <img class="floating-image" src="{{ url_for('static', filename='halloween.jpeg') }}" alt="Dejavu Food & Drinks" />
-        <div class="button-container">
-            <button onclick="window.location.href='/mostrar-ruta'">Cómo llegar</button>
-            <button onclick="window.location.href='/nuestra-carta'">Nuestra Carta</button>
+    <!-- Navbar -->
+    <div class="navbar">
+        <!-- Logo dentro del navbar -->
+        <a href="/">
+            <img src="{{ url_for('static', filename='logodejavu.webp') }}" alt="Logo Dejavu" loading="lazy">
+        </a>
+        <!-- Icono de menú hamburguesa (para móviles) -->
+        <div class="menu-icon" onclick="toggleDrawer()">&#9776;</div>
+        <!-- Enlaces de navegación (en dispositivos grandes) -->
+        <div class="navbar-links">
+            <a href="/">Inicio</a>
+            <a href="/mostrar-ruta">Cómo llegar</a>
+            <a href="/nuestra-carta">Nuestra Carta</a>
+            <a href="/quienes-somos">Quienes Somos</a>
+            <a href="/nuestros-clientes">Nuestros Clientes</a>
+            <a href="/ruleta-premios">Ruleta Navideña</a>
         </div>
     </div>
+
+    <!-- Drawer / Menú lateral -->
+    <div id="drawer" class="drawer">
+        <a href="/" onclick="closeDrawer()">Inicio</a>
+        <a href="/mostrar-ruta" onclick="closeDrawer()">Cómo llegar</a>
+        <a href="/nuestra-carta" onclick="closeDrawer()">Nuestra Carta</a>
+        <a href="/quienes-somos" onclick="closeDrawer()">Quienes Somos</a>
+        <a href="/nuestros-clientes" onclick="closeDrawer()">Nuestros Clientes</a>
+        <a href="/ruleta-premios" onclick="closeDrawer()">Ruleta Navideña</a>
+    </div>
+    <div class="container">
+        <h1>Ofertas Increíbles</h1>
+        <!-- Mostrar h2 primero, luego h3 -->
+        <h2>
+            <span>No pierdas esta oportunidad</span>
+            <span>Tenemos descuentos de hasta 20% OFF en toda nuestra carta si realizas tu pedido por whatsapp</span>
+            <span>, no incluye delivery</span>
+        </h2>
+        <h2 class="fondo">
+            <span>Sólo por esta semana 🏃🏃🏃😁</span>
+            <span>🤝🙌</span>
+        </h2>
+        <div id="open-chatbot">
+            <!-- Botón del chatbot -->
+            <button id="open-chatbot">💬</button>
+            <span>¡Chatbot!</span> <!-- Mensaje en el botón flotante -->
+        </div>
+        
+
+        <!-- Carrusel de productos -->
+        <div class="carousel-container">
+            <div class="carousel" id="carousel">
+                <!-- Los productos se agregarán dinámicamente aquí -->
+            </div>
+        </div>
+        <h2>
+            <p>15% OFF en toda nuestra carta si realizas tu pedido por Pedidos Ya 😵‍💫😵‍💫🏃🏃‍♂️🏃‍♀️</p>
+        </h2>
+        <a href="https://www.pedidosya.com.pe/restaurantes/lima/dejavu-food-drinks-5102152f-7894-4583-9b70-ca1189c62bfb-menu"
+            target="_blank">
+            <button class="order-button-pedidos">Pedido por Pedidos Ya</button>
+        </a>
+    </div>
+    <!-- Popup del chatbot -->
+    <!-- Popup del chatbot -->
+    <div id="chatbot-popup">
+        <div class="header">
+            <h5>Chatbot</h5>
+        </div>
+        <div class="body" id="chat-body">
+            <!-- Aquí se mostrarán los mensajes y opciones -->
+        </div>
+        <!-- Botón de cerrar -->
+        <span id="closePopup" class="close-btn">&times;</span>
+    </div>
+    <!-- Botón flotante de WhatsApp -->
+    <div class="whatsapp-button" onclick="window.location.href='/nuestra-carta'">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Logo" loading="lazy">
+        <!-- Logo de WhatsApp -->
+        <span>¡Haz tu pedido ahora!!!</span> <!-- Mensaje en el botón flotante -->
+    </div>
+    
+    <script>
+        // Función para abrir y cerrar el drawer (menú lateral)
+        function toggleDrawer() {
+            const drawer = document.getElementById('drawer');
+            drawer.classList.toggle('open'); // Cambia la clase para mostrar u ocultar el menú
+        }
+
+        // Función para cerrar el drawer cuando se haga clic en un enlace
+        function closeDrawer() {
+            const drawer = document.getElementById('drawer');
+            drawer.classList.remove('open'); // Cierra el menú
+        }
+        // Los productos se pasan desde Flask en formato JSON
+        
+        
+        
+
+
+        // Obtener los elementos
+        const chatbotPopup = document.getElementById("chatbot-popup");
+        const openChatbotBtn = document.getElementById("open-chatbot");
+        const sendMessageBtn = document.getElementById("send-message");
+        const userMessageInput = document.getElementById("user-message");
+        const chatBody = document.getElementById("chat-body");
+
+        var closePopup = document.getElementById("closePopup");
+        // Variables para el chatbot
+        let userId = localStorage.getItem("user_id"); // Inicializar el user_id desde localStorage (si ya existe)
+        if (!userId) {
+            // Si no hay un user_id, generamos uno nuevo y lo almacenamos en localStorage
+            userId = generateUniqueId();
+            localStorage.setItem("user_id", userId);
+        }
+
+        // Mostrar el popup cuando se hace clic en el botón
+        openChatbotBtn.onclick = function () {
+            chatbotPopup.style.display = "block";
+            openChatbotBtn.style.display = "none"; // Ocultar el botón cuando el popup está abierto
+            startConversation(); // Aquí llamas a la función que inicie la conversación del chatbot
+        };
+
+        // Cerrar el popup cuando se hace clic en la "X"
+        closePopup.onclick = function () {
+            chatbotPopup.style.display = "none";
+            openChatbotBtn.style.display = "block"; // Mostrar el botón para abrir el popup nuevamente
+        };
+
+        // Prevenir el cierre si se hace clic dentro del contenido del popup
+        chatbotPopup.querySelector(".popup-content").addEventListener("click", function (event) {
+            event.stopPropagation(); // Detener la propagación del clic hacia el fondo
+        });
+
+        // Generación de un ID único si no existe
+        function generateUniqueId() {
+            return 'user_' + Math.random().toString(36).substr(2, 9);
+        }
+
+        // Enviar mensaje del usuario
+        sendMessageBtn.onclick = function () {
+            const userMessage = userMessageInput.value.trim();
+            if (userMessage) {
+                sendMessageToBot(userMessage);
+                userMessageInput.value = ''; // Limpiar el input después de enviar
+            }
+        };
+
+        // Iniciar la conversación mostrando el primer mensaje
+        function startConversation() {
+            showBotMessage("¡Hola! Bienvenido a Dejavu Food & Drinks. ¿Cómo puedo ayudarte hoy?, te doy algunas opciones");
+            showOptions([
+                "Ver menú 🍔",
+                "Hacer un pedido 🛍️",
+                "Ver ofertas 🎉",
+                "Información de contacto 📞",
+                "ver horario⌚"
+            ]);
+        }
+
+        // Mostrar el mensaje del bot
+        function showBotMessage(message) {
+            const messageElement = document.createElement("div");
+            messageElement.classList.add("bot-message");
+            messageElement.textContent = message;
+            chatBody.appendChild(messageElement);
+        }
+
+        // Mostrar las opciones del bot
+        function showOptions(options) {
+            const optionsContainer = document.createElement("div");
+            optionsContainer.id = "options-container";
+            chatBody.appendChild(optionsContainer); // Añadir las opciones al chat
+
+            // Crear botones para cada opción
+            options.forEach(option => {
+                const optionButton = document.createElement("button");
+                optionButton.textContent = option;
+                optionButton.onclick = () => sendMessageToBot(option); // Llamar a sendMessageToBot con la opción seleccionada
+                optionsContainer.appendChild(optionButton); // Añadir el botón al contenedor
+            });
+        }
+
+        // Enviar mensaje al bot y obtener la respuesta
+        function sendMessageToBot(userMessage) {
+            // Si no existe userId, significa que es la primera vez, por lo que lo inicializamos como null
+            const payload = {
+                message: userMessage,
+                user_id: userId || null,  // Enviar null si userId no existe
+            };
+            console.log("Payload enviado:", payload);
+            fetch('/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(payload)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    const { response, options, user_id } = data;
+                    console.log("Respuesta del backend:", data); // Verifica la respuesta aquí
+                    // Guardar el user_id en localStorage para futuras interacciones
+                    if (user_id) {
+                        userId = user_id;
+                        localStorage.setItem("user_id", userId);
+                    }
+                    // Mostrar el mensaje del bot
+                    showBotMessage(response);
+
+                    // Mostrar las opciones si existen
+                    if (options && options.length > 0) {
+                        showOptions(options);
+                    }
+                })
+                .catch(error => {
+                    console.error("Error al enviar el mensaje al bot:", error);
+                });
+        }
+
+    </script>
+    <!-- Aquí colocamos el JSON de productos dentro de un atributo data -->
+    <div id="productos" data-productos='{{ productos | tojson | e }}'></div>
+    <!-- Vincula el archivo JS -->
+    <script src="{{ url_for('static', filename='js/obtenerofertas.js') }}" defer></script>
 </body>
+
 </html>

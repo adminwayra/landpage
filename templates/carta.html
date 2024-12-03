@@ -1,9 +1,16 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ingresa datos del cliente y solicita tu pedido">
+    <meta name="keywords" content="telefono,super ofertas,direccion, whatsapp, delivery, clientes, Dejavu">
     <title>Carta de Dejavu Food & Drinks</title>
+    <!-- Aquí va la URL canónica -->
+    <link rel="canonical" href="https://www.dejavurestobar.com.pe/nuestra-carta">
+    <!-- Vincula el archivo CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -11,167 +18,476 @@
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            background-color: #FFA500; /* Fondo naranja */
+
             margin: 0;
-            color: white;
-            padding: 20px;
             box-sizing: border-box;
         }
-        .promo {
-            margin: 20px 0; /* Añadido margen superior e inferior */
-            text-align: center;
-            font-size: 25px;
-        }
-        .rotate {
-            position: absolute;
-            top: 30%; /* Ajusta según necesites */
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 40px;
-            font-weight: bold;
-            color: white; /* Color de la palabra "20%" */
-            z-index: 10; /* Asegura que esté encima de la imagen */
-            animation: move 4s linear infinite; /* Movimiento combinado */
-        }
-        @keyframes move {
-            0% { transform: translate(-50%, -50%) translateX(100px) translateY(-100px); }
-            25% { transform: translate(-50%, -50%) translateX(-100px) translateY(-100px); }
-            50% { transform: translate(-50%, -50%) translateX(-100px) translateY(100px); }
-            75% { transform: translate(-50%, -50%) translateX(100px) translateY(100px); }
-            100% { transform: translate(-50%, -50%) translateX(100px) translateY(-100px); }
-        }
-        .carousel {
-            position: relative;
-            width: 100%;
-            max-width: 600px;
-            overflow: hidden;
-            border: 2px solid #ccc;
-            border-radius: 10px;
-            margin: 20px auto; /* Centra el carrusel */
-        }
-        .carousel-inner {
-            display: flex;
-            transition: transform 0.5s ease;
-        }
-        .carousel-item {
-            min-width: 100%;
-            box-sizing: border-box;
-            position: relative; /* Para que el texto pueda posicionarse relativo a este contenedor */
-        }
-        .carousel img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-        }
-        .buttons {
-            position: absolute;
-            top: 50%;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            transform: translateY(-50%);
-        }
-        .button {
-            background: rgba(255, 255, 255, 0.7);
-            border: none;
-            cursor: pointer;
-            padding: 10px;
-            border-radius: 5px;
-            font-size: 20px;
-            transition: background 0.3s;
-        }
-        .button:hover {
-            background: rgba(255, 255, 255, 1);
-        }
-        .whatsapp-button {
-            background-color: #25D366; /* Color de WhatsApp */
+
+        .order-button-whatsapp {
+            background-color: #25D366;
             color: white;
             padding: 10px 20px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             font-size: 18px;
+            margin-top: 10px;
+            text-decoration: none;
+            display: inline-block;
+            /*display: inline-block;*/
+            width: 80%;
+        }
+
+        /* Estilo para el formulario de dirección y nombre */
+        .direccion-form {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
             margin-top: 20px;
-            text-decoration: none; /* Evita subrayar el enlace */
-            display: inline-block; /* Hace que el enlace se comporte como un botón */
+            display: none;
+        }
+
+        .direccion-form input {
+            margin-left: 10px;
+            margin-right: 10px;
+            margin-top: 5px;
+            padding: 10px;
+            width: 95%;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        #agregar-btn {
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 20px;
+            color: white;
+            background-color: orange;
+
+        }
+
+        /* Estilo para el popup */
+        .popup {
+            display: none;
+            /* Inicialmente oculto */
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            /* Fondo oscuro para el popup */
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            /* Asegúrate de que el popup esté por encima de otros elementos */
+        }
+
+        .popup-content {
+            background-color: black;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 80%;
+            max-width: 500px;
+        }
+
+        .popup button {
+            margin-top: 10px;
+        }
+
+        /* Ajustes para pantallas pequeñas */
+        @media (max-width: 600px) {
+            .promo {
+                font-size: 18px;
+                /* Reducir tamaño de texto */
+            }
+
+            .plato {
+                flex-direction: column;
+                /* Apilar los elementos (imagen, nombre y precios) en lugar de alinearlos horizontalmente */
+                align-items: center;
+                /* Centrar todo */
+                width: 100%;
+                /* Asegura que los platos no se desborden */
+                height: auto;
+            }
+
+            .plato img {
+                width: 120px;
+                /* Reducir el tamaño de la imagen */
+                height: 120px;
+                margin-bottom: 10px;
+                /* Añadir margen inferior */
+            }
+
+            .nombre-plato {
+                font-size: 16px;
+                /* Reducir tamaño de fuente */
+            }
+
+            .descripcion-plato {
+                font-size: 12px;
+                /* Reducir tamaño de fuente */
+            }
+
+            .precio-original,
+            .precio-descuento {
+                font-size: 14px;
+                /* Reducir tamaño de los precios */
+            }
+
+            .agregar {
+                font-size: 14px;
+                /* Reducir tamaño del botón */
+                padding: 8px 15px;
+                /* Reducir padding */
+            }
+
+            .carrito {
+                width: 100%;
+                padding: 10px;
+            }
+
+            .carrito h3 {
+                font-size: 16px;
+            }
+
+            .carrito-item {
+                font-size: 14px;
+                /* Reducir tamaño del texto en el carrito */
+            }
+
+            .carrito-total {
+                font-size: 16px;
+                /* Reducir tamaño del total */
+            }
+
+            .cantidad-botones button {
+                font-size: 14px;
+                /* Reducir el tamaño de los botones */
+            }
+
+            .order-button-whatsapp {
+                font-size: 16px;
+                /* Reducir el tamaño del botón */
+                width: 90%;
+                /* Asegura que el botón ocupe el 90% de la pantalla */
+            }
         }
     </style>
 </head>
+
 <body>
 
-<div class="promo">
-    <p>¡Aprovecha nuestras promociones!</p>
-    <p>15% off en pedidos ya</p>
-    <p>20% off en recojo en tienda o delivery particular</p>
-</div>
+    <div class="promo">
+        <h1>Carta con descuentos especiales</h1>
+        <p>Inicia tu pedido para atenderlo por whatsapp 😵‍💫😵‍💫🏃🏃‍♂️🏃‍♀️</p>
+        <p>No incluye costo delivery</p>
+    </div>
 
-<div class="carousel">
-    <div class="carousel-inner" id="carouselInner">
-        <div class="carousel-item">
-            <img src="{{ url_for('static', filename='carta1.png') }}" alt="Promociones">
-            <div class="rotate">20% off</div> <!-- Palabra "20%" moviéndose -->
-        </div>
-        <div class="carousel-item">
-            <img src="{{ url_for('static', filename='carta2.png') }}" alt="Hamburguesas">
-            <div class="rotate">20% off</div>
-        </div>
-        <div class="carousel-item">
-            <img src="{{ url_for('static', filename='carta3.png') }}" alt="Imagen 3">
-            <div class="rotate">20% off</div>
-        </div>
-        <div class="carousel-item">
-            <img src="{{ url_for('static', filename='carta4.png') }}" alt="Imagen 4">
-            <div class="rotate">20% off</div>
-        </div>
-        <div class="carousel-item">
-            <img src="{{ url_for('static', filename='carta5.png') }}" alt="Imagen 5">
-            <div class="rotate">20% off</div>
-        </div>
-        <div class="carousel-item">
-            <img src="{{ url_for('static', filename='carta6.png') }}" alt="Imagen 6">
-            <div class="rotate">20% off</div>
+    <div class="menu-container">
+        <!-- Aquí se generarán dinámicamente los platos -->
+    </div>
+
+    <div class="carrito">
+        <h3>Tu Pedido</h3>
+        <div class="carrito-items" id="carrito-items"></div>
+        <p class="carrito-total" id="carrito-total">Total: S/0.00</p>
+    </div>
+
+    <!-- Formulario para dirección y nombre (invisible hasta que haya items en el carrito) -->
+    <div class="direccion-form" id="direccion-form">
+        <p>Ingrese su nombre dirección de envío y correo por favor:</p>
+        <input type="text" id="nombre" placeholder="Ingrese su nombre">
+        <input type="text" id="direccion" placeholder="Ingrese la dirección de envío">
+        <input type="text" id="correo" placeholder="Ingrese correo electrónico">
+        <button type="button" id="agregar-btn">Registrarse</button> <!-- Botón en lugar de submit -->
+    </div>
+
+    <!-- Botón de WhatsApp dinámico -->
+    <a id="whatsapp-link" href="#" target="_blank">
+        <button id="whatsapp-button" class="order-button-whatsapp" disabled>Enviar pedido a WhatsApp</button>
+    </a>
+    <!-- Modal (popup) -->
+    <div id="popup" class="popup" style="display: none;">
+        <div class="popup-content">
+            <h2>¡Felicidades!</h2>
+            <p id="popup-message"></p>
+            <button id="close-popup">Cerrar</button>
         </div>
     </div>
-    <div class="buttons">
-        <button class="button" onclick="prevSlide()">❮</button>
-        <button class="button" onclick="nextSlide()">❯</button>
-    </div>
-</div>
 
-<!-- Botón de WhatsApp -->
-<a href="https://wa.me/51908870299?text=Quiero%20realizar%20un%20pedido%20por%20favor" target="_blank">
-    <button class="whatsapp-button">Hacer pedido por WhatsApp</button>
-</a>
+    <!-- Incluir jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<script>
-    let currentIndex = 0;
+    <div id="codigo_premio" data-codigo="{{ codigo_premio if codigo_premio else 0 }}"></div>
+    <script>
+        // Obtener el código del premio desde la URL (pasado por Flask)
+        //const codigoPremio = {{ codigo_premio | tojson }};  // Usamos {{ codigo_premio }} para pasar el valor al script
 
-    function showSlide(index) {
-        const slides = document.querySelectorAll('.carousel-item');
-        const totalSlides = slides.length;
-
-        if (index >= totalSlides) {
-            currentIndex = 0;
-        } else if (index < 0) {
-            currentIndex = totalSlides - 1;
-        } else {
-            currentIndex = index;
+        // Definir los mensajes de descuento
+        const premios = {
+            10: "¡Tienes un 10% de descuento en casi toda la carta!",
+            15: "¡Tienes un 15% de descuento en casi toda la carta!",
+            20: "¡Tienes un 20% de descuento en casi toda la carta!",
+            25: "¡Tienes un 25% de descuento en casi toda la carta!",
+            30: "¡Tienes un 30% de descuento en casi toda la carta!",
+            35: "¡Tienes un 35% de descuento en casi toda la carta!",
+            0: "Lo siento, no obtuviste ningún premio. 😞"
+        };
+        const carritoItems = document.getElementById('carrito-items');
+        const carritoTotal = document.getElementById('carrito-total');
+        const whatsappLink = document.getElementById('whatsapp-link');
+        const direccionForm = document.getElementById('direccion-form');
+        let carrito = []; // Arreglo para almacenar los platos seleccionados
+        const popup = document.getElementById('popup');
+        const popupMessage = document.getElementById('popup-message');
+        const closePopupBtn = document.getElementById('close-popup');
+        const whatsappButton = document.getElementById('whatsapp-button');
+        // Deshabilitar el botón de WhatsApp mientras se procesa el registro y pedido
+        direccionForm.style.display = 'none';
+        whatsappButton.disabled = true;
+        <!-- Aquí colocamos el JSON de productos dentro de un atributo data -->
+        const codigo_p = parseInt(document.getElementById('codigo_premio').dataset.codigo, 10);
+        //<div id="codigo_premio" data-codigo="0"></div>
+        //console.log("Código del premio desde la URL:", codigoPremio);
+        // Función para mostrar el popup con el mensaje de descuento
+        function showPopup() {
+            const message = premios[codigo_p] || premios[0];  // Si no hay premio válido, mostrar "No hay premio"
+            popupMessage.textContent = message;
+            popup.style.display = 'flex';  // Mostrar el popup
+            console.log("mensaje:", message);
         }
 
-        const carouselInner = document.getElementById('carouselInner');
-        carouselInner.style.transform = 'translateX(' + (-currentIndex * 100) + '%)';
-    }
+        // Cerrar el popup cuando el usuario haga clic en el botón "Cerrar"
+        closePopupBtn.addEventListener('click', () => {
+            popup.style.display = 'none'; // Ocultar el popup
+        });
 
-    function nextSlide() {
-        showSlide(currentIndex + 1);
-    }
+        // Si hay un código de premio (es decir, si no es 0), mostramos el popup
+        if (codigo_p != 0) {
+            showPopup();
+        }
 
-    function prevSlide() {
-        showSlide(currentIndex - 1);
-    }
-</script>
+        // Función para agregar un plato al carrito
+        function agregarAlCarrito(id_plato, nombre, precio) {
+            const productoExistente = carrito.find(item => item.id_plato === id_plato);
 
+            if (productoExistente) {
+                productoExistente.cantidad += 1;
+            } else {
+                carrito.push({ id_plato, nombre, precio, cantidad: 1 });
+            }
+
+            actualizarCarrito();
+        }
+
+        // Actualizar el carrito
+        function actualizarCarrito() {
+            carritoItems.innerHTML = '';
+            let total = 0;
+
+            carrito.forEach(item => {
+                const precioTotal = (item.precio * item.cantidad).toFixed(2);
+                total += item.precio * item.cantidad;
+
+                carritoItems.innerHTML += `
+                <div class="carrito-item">
+                    <span>${item.nombre} x${item.cantidad}</span>
+                    <span>S/${precioTotal}</span>
+                    <div class="cantidad-botones">
+                        <button onclick="modificarCantidad(${item.id_plato}, -1)">-</button>
+                        <span>${item.cantidad}</span>
+                        <button onclick="modificarCantidad(${item.id_plato}, 1)">+</button>
+                    </div>
+                    <button class="eliminar-btn" onclick="eliminarDelCarrito(${item.id_plato})">Eliminar</button>
+                </div>
+            `;
+            });
+
+            carritoTotal.textContent = `Total: S/${total.toFixed(2)}`;
+
+            // Mostrar el formulario si hay items en el carrito
+            if (carrito.length > 0) {
+                direccionForm.style.display = 'block';
+            } else {
+                direccionForm.style.display = 'none';
+            }
+        }
+
+        // Función para modificar la cantidad de un producto
+        function modificarCantidad(id_plato, cantidad) {
+            const item = carrito.find(item => item.id_plato === id_plato);
+
+            if (item) {
+                item.cantidad += cantidad;
+
+                if (item.cantidad <= 0) {
+                    carrito = carrito.filter(item => item.id_plato !== id_plato);
+                }
+            }
+
+            actualizarCarrito();
+        }
+
+        // Función para eliminar un producto del carrito
+        function eliminarDelCarrito(id_plato) {
+            carrito = carrito.filter(item => item.id_plato !== id_plato);
+            actualizarCarrito();
+        }
+
+        // Función para agregar un nuevo cliente
+        async function agregarCliente(nombre, direccion, correo, id_perfil) {
+            try {
+                // Construir el objeto de datos
+                const clienteData = {
+                    nombre: nombre,
+                    direccion: direccion,
+                    correo: correo,
+                    id_perfil: 1
+                };
+
+                // Realizar la solicitud POST usando fetch
+                const response = await fetch('/agregar_cliente', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'  // Indicar que estamos enviando JSON
+                    },
+                    body: JSON.stringify(clienteData)  // Convertir el objeto de datos a JSON
+                });
+
+                // Verificar si la solicitud fue exitosa
+                if (response.ok) {
+                    const data = await response.json();  // Parsear la respuesta JSON
+                    alert(`Cliente agregado con éxito. ID Cliente: ${data.id_cliente}`);
+                    return data.id_cliente;  // Devolvemos el id_cliente
+                } else {
+                    const errorData = await response.json();
+                    alert(`Error: ${errorData.error}`);
+                    return alert('Hubo un error al agregar el cliente.');
+                }
+
+            } catch (error) {
+                console.error('Error en la solicitud:', error);
+                alert('Hubo un error al agregar el cliente.');
+            }
+        }
+        // Función para habilitar el botón de WhatsApp
+        function habilitarWhatsapp() {
+            console.log('Habilitando WhatsApp...');
+            whatsappButton.disabled = false;  // Habilitar el botón
+            whatsappLink.setAttribute('href', '#');  // Establecer nuevamente el enlace
+        }
+        document.getElementById('agregar-btn').addEventListener('click', async function (event) {
+            // Obtener los valores de los campos del formulario
+            const nombre = document.getElementById('nombre').value;
+            const direccion = document.getElementById('direccion').value;
+            const correo = document.getElementById('correo').value;
+            const id_perfil = 1; // O cualquier valor dinámico que asignes
+
+            // Validar que los campos no estén vacíos
+            if (!nombre || !direccion || !correo) {
+                alert("Por favor ingrese su nombre, dirección y correo.");
+                return; // Detener la ejecución si falta algún campo
+            }
+
+            try {
+                // Buscar el cliente por correo
+                const response = await fetch(`/buscar_cliente/${correo}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
+
+                const data = await response.json();  // Convertimos la respuesta a JSON
+                let id_cliente;
+
+                // Si el cliente existe, obtenemos el id_cliente
+                if (data.id_cliente) {
+                    id_cliente = data.id_cliente;
+                    alert("Ya estás registrado.");
+                } else {
+                    // Si el cliente no existe, lo registramos
+                    alert("Cliente no encontrado. En este momento lo registraremos.");
+                    id_cliente = await agregarCliente(nombre, direccion, correo, id_perfil);  // Esperamos a que se registre el cliente
+                }
+
+                // Aquí continuamos con el pedido una vez tengamos el id_cliente
+                if (id_cliente) {
+                    // Variables necesarias para crear el pedido
+                    let total = 0;
+                    carrito.forEach(item => {
+                        const precioTotal = (item.precio * item.cantidad).toFixed(2);
+                        total += item.precio * item.cantidad;
+                    });
+
+                    const pedidoData = {
+                        id_cliente: id_cliente,  // Usamos el id_cliente obtenido
+                        total: parseFloat(total),
+                        detalles: carrito.map(item => ({
+                            id_producto: item.id_plato,
+                            cantidad: item.cantidad,
+                            precio: parseFloat(item.precio),  // Redondear a 2 decimales
+                        }))
+                    };
+
+                    // Enviar el pedido al backend
+                    const pedidoResponse = await fetch('/agregar_pedido', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(pedidoData)
+                    });
+
+                    const pedidoDataResponse = await pedidoResponse.json();
+
+                    alert('Pedido agregado con éxito.');
+                    habilitarWhatsapp();
+                }
+
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Hubo un error al procesar la solicitud.');
+                habilitarWhatsapp();  // Si hay error, habilitar el botón de nuevo
+            }
+        });
+
+        // Agregar el evento al botón de WhatsApp
+        whatsappButton.addEventListener('click', function (event) {
+            if (whatsappButton.disabled) {
+                event.preventDefault(); // Evitar la acción del enlace si el botón está deshabilitado
+                return;
+            }
+
+            event.preventDefault();  // Previene el comportamiento predeterminado del enlace
+            const nombre = document.getElementById('nombre').value;
+            const direccion = document.getElementById('direccion').value;
+
+            // Crear el mensaje del pedido
+            const mensaje = carrito.map(item => `${item.nombre} x${item.cantidad} S/${(item.precio * item.cantidad).toFixed(2)}`).join('\n');
+            const total = carrito.reduce((acc, item) => acc + (item.precio * item.cantidad), 0).toFixed(2);
+
+            // Crear el mensaje final
+            const mensajeFinal = `Nombre: ${nombre}\nDirección: ${direccion}\n\nPedido:\n${mensaje}\nTotal: S/${total}`;
+
+            // Establecer el enlace de WhatsApp con el mensaje
+            const whatsappUrl = `https://wa.me/51908870299?text=${encodeURIComponent(mensajeFinal)}`;
+            window.location.href = whatsappUrl;  // Redirigir a WhatsApp
+
+
+
+
+        });
+        // Mostrar los platos al cargar la página
+
+    </script>
+
+    <!-- obtener carta desde mysql -->
+    <script src="{{ url_for('static', filename='js/obtenercarta.js') }}"></script>
 </body>
+
 </html>
-
-

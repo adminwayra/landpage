@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Disfruta de un álbum de fotos interactivo en Dejavu Restobar, con imágenes únicas y sonidos especiales. Conoce nuestros clientes y descubre más sobre nuestra carta.">
+    <meta name="keywords" content="restaurante, fotos interactivas, álbum, música, carta, clientes, Dejavu">
+    <title>Álbum de fotos interactivo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: black;
+            /*display: flex;*/
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 30px;
+            overflow-x: hidden;
+            /* Evita desplazamiento  en columnas de la página */
+            position: relative;
+        }
+
+        main {
+            flex: 1;
+            /* Este elemento crecerá para ocupar el espacio disponible */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: #FF8C00;
+        }
+
+        .album-container {
+            position: relative;
+            /* Cambiado de absolute a relative */
+            margin: 0 auto;
+            /* Centra el contenedor horizontalmente */
+            width: 350px;
+            height: 520px;
+            border: 2px solid #000;
+            background-color: black;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            perspective: 1000px;
+            overflow: hidden;
+        }
+
+        /* El contenedor de las páginas que se va desplazando */
+        .pages-wrapper {
+            display: flex;
+            transition: transform 1s ease-in-out;
+            height: 100%;
+            width: 100%;
+            transform-style: preserve-3d;
+            /* Mantener el estilo 3D */
+            position: absolute;
+        }
+
+        /* Cada página del álbum */
+        .page {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            backface-visibility: hidden;
+            /* Ocultar el reverso de la página */
+            overflow: hidden;
+            /* Asegura que las imágenes no sobresalgan de la página */
+            transform-origin: center left;
+            /* Establece el eje de rotación de la página */
+        }
+
+        /* Contenedores para las imágenes */
+        .photo-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Estilos para las imágenes */
+        .photo {
+            width: 100%;
+            /* Las imágenes ocupan el 100% del contenedor */
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            object-fit: cover;
+            /* Asegura que la imagen llene el espacio sin deformarse */
+            background-repeat: no-repeat;
+        }
+
+        /* Animación de caída de las fotos */
+        @keyframes fallAnimation {
+            0% {
+                transform: translateY(-100%);
+                /* Empieza fuera de la vista */
+            }
+
+            100% {
+                transform: translateY(0);
+                /* Se coloca en su posición final */
+            }
+        }
+
+        .photo-animation {
+            animation: fallAnimation 1s ease-out forwards;
+        }
+
+
+
+        .controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            font-size: 24px;
+            color: #000;
+            z-index: 10;
+        }
+
+        .control-btn {
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .control-btn:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .audio {
+            display: none;
+        }
+
+        /* Estilos para los globos */
+        .balloon {
+            position: absolute;
+            width: 50px;
+            height: 70px;
+            background-image: url('static/globo.png');
+            /* Ruta de la imagen del globo */
+            background-size: cover;
+            animation: floatBalloon 10s infinite linear;
+            z-index: 100;
+            /* Aseguramos que los globos estén sobre otros elementos */
+        }
+
+        /* Animación de los globos flotando */
+        @keyframes floatBalloon {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-50vh) rotate(180deg);
+            }
+
+            100% {
+                transform: translateY(0) rotate(360deg);
+            }
+        }
+
+        /* Posición aleatoria de los globos */
+        .balloon-left {
+            left: 10%;
+            bottom: -20px;
+            animation-duration: 12s;
+            animation-delay: 0s;
+        }
+
+        .balloon-right {
+            right: 10%;
+            bottom: -20px;
+            animation-duration: 14s;
+            animation-delay: 2s;
+        }
+
+        footer {
+            background-color: orangered;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 50%;
+            display: block;
+        }
+
+        footer nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        footer nav ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+
+        footer nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        header h1 {
+            font-size: 26px;
+            margin-bottom: 10px;
+            font-weight: bold;
+            font-family: 'Montserrat', sans-serif;
+            transition: color 0.3s ease;
+            color:white;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Álbum de recuerdos inolvidables</h1>
+    </header>
+    <main>
+        <div class="album-container">
+            <!-- Contenedores de globos a los costados -->
+            <div class="balloon balloon-left"></div>
+            <div class="balloon balloon-right"></div>
+
+            <!-- Contenedor de la página actual -->
+            <div class="pages-wrapper" id="pagesWrapper">
+                <!-- Primera página -->
+                <div class="page" id="page-1">
+                    <div class="photo-container">
+                        <div class="photo photo-animation" style="background-image: url('static/tapa_album.png');"
+                            aria-label="Imagen de tapa de álbum de clientes"></div>
+                    </div>
+                </div>
+                <!-- Primera página -->
+                <div class="page" id="page-2">
+                    <div class="photo-container">
+                        <div class="photo photo-animation" style="background-image: url('static/cliente_1.jpeg');"
+                            aria-label="Imagen de tapa de álbum de clientes"></div>
+                    </div>
+                </div>
+                <!-- Segunda página -->
+                <div class="page" id="page-3">
+                    <div class="photo-container">
+                        <div class="photo photo-animation" style="background-image: url('static/cliente_3.jpeg');"
+                            aria-label="Imagen de tapa de álbum de clientes"></div>
+                    </div>
+                </div>
+                <!-- Tercera página -->
+                <div class="page" id="page-4">
+                    <div class="photo-container">
+                        <div class="photo photo-animation" style="background-image: url('static/clientes.jpeg');"
+                            aria-label="Imagen de tapa de álbum de clientes"></div>
+                    </div>
+                </div>
+                <!-- Cuarta página -->
+                <div class="page" id="page-5">
+                    <div class="photo-container">
+                        <div class="photo photo-animation" style="background-image: url('static/halloween.jpeg');"
+                            aria-label="Imagen de tapa de álbum de clientes"></div>
+                    </div>
+                </div>
+                <div class="page" id="page-6">
+                    <div class="photo-container">
+                        <div class="photo photo-animation" style="background-image: url('static/fin_album.png');"
+                            aria-label="final del album"></div>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="controls">
+                <button class="control-btn" id="prevBtn">◀</button>
+                <button class="control-btn" id="nextBtn">▶</button>
+            </div>
+        </div>
+
+        <audio id="page-turn-sound" class="audio">
+            <source src="static/turn-page-sound.mp3" type="audio/mp3">
+        </audio>
+    </main>
+    <footer>
+        <nav>
+            <ul>
+                <li><a href="https://www.dejavurestobar.com.pe/">Inicio</a></li>
+            </ul>
+        </nav>
+    </footer>
+
+    <script>
+        let currentPage = 0; // Página inicial
+        const totalPages = 6; // Total de páginas (incluyendo la página final)
+        const pagesWrapper = document.getElementById('pagesWrapper');
+        const endPage = document.getElementById('end-page');
+
+
+        // Función para cambiar la página
+        function changePage() {
+            const allPages = document.querySelectorAll('.page');
+            allPages.forEach((page, index) => {
+                page.style.zIndex = 1; // Poner todas las páginas detrás
+                page.style.transition = 'transform 1s ease-in-out'; // Agregar transición de giro
+                if (index === currentPage) {
+                    page.style.zIndex = 3; // La página actual está al frente
+                    page.style.transform = 'rotateY(0deg)'; // Volver a su posición normal
+                } else {
+                    page.style.transform = 'rotateY(-180deg)'; // Girar las páginas que no están activas
+                }
+            });
+        }
+
+
+        let sound = document.getElementById('page-turn-sound');
+        // Botón siguiente
+        document.getElementById('nextBtn').addEventListener('click', () => {
+            if (currentPage < totalPages - 1) {
+                currentPage++;
+                changePage();
+                sound.play(); // Sonido al pasar la página
+            }
+        });
+
+        // Botón anterior
+        document.getElementById('prevBtn').addEventListener('click', () => {
+            if (currentPage > 0) {
+                currentPage--;
+                changePage();
+                sound.play(); // Sonido al pasar la página
+            }
+        });
+
+        // Inicializar la vista
+        changePage();
+    </script>
+
+</body>
+
+</html>

@@ -2,44 +2,432 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #FFA500; /* Fondo naranja */
-    color: white; /* Color de texto en blanco */
+    background-color: #FFA500;
+    /* Fondo naranja */
+    color: white;
+    /* Color de texto en blanco */
     text-align: center;
     padding: 20px;
 }
 
 h1 {
-    color: #fff; /* Color de texto del encabezado */
-    font-size: 2.5em; /* Tamaño del encabezado */
-    margin-bottom: 10px; /* Espacio debajo del encabezado */
+    color: #fff;
+    /* Color de texto del encabezado */
+    font-size: 2.2em;
+    /* Tamaño del encabezado */
+    margin-bottom: 10px;
+    /* Espacio debajo del encabezado */
 }
 
 h2 {
-    color: #fff; /* Color del subtítulo */
-    font-size: 1.5em; /* Tamaño del subtítulo */
-    margin: 10px 0; /* Espacio alrededor del subtítulo */
+    color: #fff;
+    /* Color del subtítulo */
+    font-size: 1.5em;
+    /* Tamaño del subtítulo */
+    margin: 10px 0;
+    /* Espacio alrededor del subtítulo */
 }
 
 img {
-    max-width: 100%; /* Imágenes responsivas */
-    height: auto; /* Mantiene la proporción */
-    margin: 20px 0; /* Espacio arriba y abajo de la imagen */
+    max-width: 100%;
+    /* Imágenes responsivas */
+    height: auto;
+    /* Mantiene la proporción */
+    margin: 20px 0;
+    /* Espacio arriba y abajo de la imagen */
 }
 
 .button {
-    background-color: yellow; /* Color de fondo de los botones */
-    color: white; /* Color de texto de los botones */
-    border: none; /* Sin borde */
-    padding: 10px 20px; /* Espaciado interno */
-    text-align: center; /* Centrar el texto */
-    text-decoration: none; /* Sin subrayado */
-    display: inline-block; /* Mostrar en línea */
-    margin: 10px 5px; /* Espaciado entre botones */
-    border-radius: 5px; /* Bordes redondeados */
-    cursor: pointer; /* Cambiar el cursor al pasar el ratón */
-    transition: background-color 0.3s; /* Transición suave */
+    background-color: yellow;
+    /* Color de fondo de los botones */
+    color: white;
+    /* Color de texto de los botones */
+    border: none;
+    /* Sin borde */
+    padding: 10px 20px;
+    /* Espaciado interno */
+    text-align: center;
+    /* Centrar el texto */
+    text-decoration: none;
+    /* Sin subrayado */
+    display: inline-block;
+    /* Mostrar en línea */
+    margin: 10px 5px;
+    /* Espaciado entre botones */
+    border-radius: 5px;
+    /* Bordes redondeados */
+    cursor: pointer;
+    /* Cambiar el cursor al pasar el ratón */
+    transition: background-color 0.3s;
+    /* Transición suave */
 }
 
 .button:hover {
-    background-color: yellowgreen; /* Color al pasar el ratón */
+    background-color: yellowgreen;
+    /* Color al pasar el ratón */
+}
+
+.promo {
+    margin: 20px 0;
+    text-align: center;
+    font-size: 25px;
+}
+
+.menu-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding-top: 10px;
+    max-height: 400px;
+    /* Limita la altura máxima del contenedor */
+    overflow-y: auto;
+    /* Permite el desplazamiento vertical */
+}
+
+.plato {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    /* Esto asegura que no se desborden en pantallas pequeñas */
+    max-width: 650px;
+    margin: 0px;
+    padding: 5px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #FF8C00, #FF4500);
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.plato img {
+    width: 150px;
+    /* Tamaño fijo para la imagen */
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 5px;
+}
+
+.plato-info {
+    flex-grow: 1;
+}
+
+.nombre-plato {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.descripcion-plato {
+    font-size: 14px;
+    color: #ddd;
+}
+
+.precios {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.precio-original {
+    text-decoration: line-through;
+    color: #f9f9f9;
+    font-size: 16px;
+}
+
+.precio-descuento {
+    font-size: 18px;
+    font-weight: bold;
+    color: #f9f9f9;
+}
+
+.agregar {
+    background-color: #25D366;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.carrito {
+    margin-top: 40px;
+    padding: 20px;
+    width: 90%;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+}
+
+.carrito h3 {
+    margin-bottom: 10px;
+}
+
+.carrito-items {
+    margin-bottom: 20px;
+}
+
+.carrito-item {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0;
+}
+
+.carrito-total {
+    font-size: 18px;
+    font-weight: bold;
+    color: #FFD700;
+}
+
+.cantidad-botones {
+    display: flex;
+    align-items: center;
+}
+
+.cantidad-botones button {
+    background-color: #FF5E00;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.cantidad-botones span {
+    margin: 0 10px;
+    font-size: 18px;
+}
+
+.eliminar-btn {
+    background-color: #FF0000;
+    color: white;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* Estilo básico para el popup del chatbot */
+#chatbot-popup {
+    display: none;
+    position: fixed;
+    top: 100px;
+    left: 40px;
+    width: 300px;
+    height: 400px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    z-index: 9999;
+}
+
+#chatbot-popup .header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    height: 30px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+#chatbot-popup .body {
+    height: 290px;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+/* Botón para abrir el popup */
+#open-chatbot {
+    position: fixed;
+    top: 40px;
+    left: 10px;
+    width: 30px;
+    height: 30px;
+    background-color: #6f4f1f;
+    opacity: 1;
+    color: white;
+    padding: 0;
+    border-radius: 50%;
+    font-size: 30px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 9999;
+}
+
+#open-chatbot span {
+    position: absolute;
+    opacity: 1;
+    bottom: -25px;
+    font-size: 12px;
+    font-weight: bold;
+    background-color: #25D366;
+    color: white;
+    padding: 5px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.bot-message {
+    background-color: #f1f1f1;
+    color: #333;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 5px 0;
+    text-align: left;
+}
+
+#options-container {
+    background-color: lightgray;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Estilos para el botón de cerrar */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+ /* Navbar */
+ .navbar {
+    display: flex;
+    justify-content: space-between;
+    /* Espacio entre el logo y los enlaces */
+    align-items: center;
+    /* Centra los elementos verticalmente */
+    background-color: #6f4f1f;
+    /* Color de fondo del navbar (color café) */
+    position: fixed;
+    /* Navbar fijo en la parte superior */
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* Ancho total */
+    height: 60px;
+    /* Altura fija del navbar */
+    z-index: 1000;
+    /* Asegura que esté sobre otros elementos */
+    padding: 0;
+    /* Espaciado interno */
+    box-sizing: border-box;
+    /* Incluir padding y border en el cálculo del ancho */
+}
+
+/* Logo dentro del navbar */
+.navbar img {
+    width: 80px;
+    /* El logo ocupa el 20% del ancho del navbar */
+    height: 80px;
+    /* Mantener las proporciones del logo */
+    margin-left: 5px;
+    /* Separación del borde izquierdo */
+    flex-shrink: 0;
+    /* Evita que el logo se comporte como un elemento flexible */
+    margin-top: 10;
+    box-shadow:
+        -12px -12px 30px rgba(255, 0, 0, 0.8),
+        /* Sombra más pronunciada hacia arriba y a la izquierda */
+        -6px -6px 25px rgba(255, 0, 0, 0.6);
+    /* Sombra difusa más suave */
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    /* Suaviza la transición de sombra */
+}
+
+/* Estilo de los enlaces dentro del navbar */
+.navbar a {
+    color: white;
+    /* Texto blanco en los enlaces */
+    text-align: center;
+    padding: 2px 2px;
+    text-decoration: none;
+    font-size: 17px;
+    margin-left: 5px;
+    /* Espaciado entre enlaces */
+    flex: 1;
+    /* Hace que los enlaces ocupen el espacio restante */
+}
+
+/* Efecto al pasar el mouse (para darle más dinamismo) */
+.navbar img:hover {
+    /* Aumenta las sombras para dar un efecto de profundidad aún más pronunciado */
+    box-shadow:
+        -20px -20px 45px rgba(255, 0, 0, 0.9),
+        /* Sombra más intensa y alejada hacia la parte superior */
+        -12px -12px 35px rgba(255, 0, 0, 0.7);
+    /* Sombra difusa pero más grande */
+
+    /* Añadir un ligero movimiento hacia abajo para mejorar el efecto */
+    transform: translateY(5px);
+    /* El logo parece "bajarse" un poco */
+}
+
+/* Icono del menú en la esquina superior derecha */
+.menu-icon {
+    display: none;
+    /* Ocultar el ícono en pantallas grandes */
+    font-size: 30px;
+    /* Aumentamos el tamaño del ícono */
+    color: white;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+/* Enlaces de navegación (cuando el menú no está abierto) */
+.navbar-links {
+    display: flex;
+    gap: 15px;
+}
+
+/* Drawer / Menú lateral */
+.drawer {
+    position: fixed;
+    top: 0;
+    right: -250px;
+    /* Comienza fuera de la vista */
+    width: 250px;
+    height: 100%;
+    background-color: #333;
+    color: white;
+    transition: right 0.3s ease-in-out;
+    /* Efecto de deslizamiento */
+    padding-top: 60px;
+    /* Deja espacio para el navbar */
+    z-index: 9999;
+    /* Asegura que el menú esté por encima del contenido */
+}
+
+/* Enlaces dentro del drawer */
+.drawer a {
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+}
+
+.drawer a:hover {
+    background-color: #444;
+}
+
+/* Contenedor principal */
+.container {
+    margin-top: 110px;
+    /* Agregar suficiente margen superior para que no se cubran los h2 */
 }

@@ -1,0 +1,131 @@
+{
+    "estado_inicial": {
+        "mensaje": "¡Hola! ¿En qué puedo ayudarte hoy? Por favor selecciona una opción:",
+        "opciones": [
+            "ver menú",
+            "hacer un pedido",
+            "ver ofertas",
+            "informacion de contacto",
+            "ver horario"
+        ]
+    },
+    "ver_menu": {
+        "mensaje": "pidelo atraves de nuestra opción del menu 'Nuestra Carta', estas son algunas de nuestras categorías:",
+        "detalles": [
+        {
+            "titulo": "Hamburguesas",
+            "descripcion": "tenemos todas las variedades de hamburguesas y todas incluyen papas fritas amarillas onduladas"
+            
+        },
+        {
+            "titulo": "Alitas",
+            "descripcion": "Alitas en distintos tipos de salsa y tambien crispy con abundantes papas fritas amarillas onduladadas"
+            
+        },
+        {
+            "titulo": "Bebidas Calientes",
+            "descripcion": "manejamos distintas bebidas calientes desde un expresso hasta un moccacino"
+            
+        },
+        {
+            "titulo": "Licores",
+            "descripcion": "tenemos happy hour todos los días en los distinitos tipos de licores, te esperamos a degustarlos"
+            
+        },
+        {
+            "titulo": "Acompañamientos",
+            "descripcion": "tenemos jugos naturales para acompañar sus comidas ademas de porciones de papas amarillas fritas onduladas y tequeños venezolanos"
+            
+        }
+
+        ],
+        
+        "opciones": [
+            "volver al inicio"
+        ]
+    },
+    "hacer_pedido": {
+        "mensaje": "Por favor, accione nuestro boton 'Haz tu pedido ahora' y participa de nuestro carrusel navideño que te otorga super descuentos ademas de otros premios",
+        "opciones": [
+            "volver al inicio"
+            
+        ]
+    },
+    "ver_ofertas": {
+    "mensaje": "Estas son nuestras ofertas actuales. ¡Aprovecha antes de que terminen!:",
+    "detalles": [
+        {
+            "titulo": "Gira nuestro carrusel navideño y gana 🎅",
+            "descripcion": "Ahora los descuentos los pones tú, gira nuestra carrusel navideño y gana!!, entra a la opcion del menu 'ruleta navideña'",
+            "valido_hasta": "31-12-2024"
+        },
+        {
+            "titulo": "Descuentos de 15% en Pedidos Ya 😵‍💫",
+            "descripcion": "Aprovecha de nuestras ofertas en pedidos ya dale click a la opcion de 'pedido por pedidos ya' en nuestra pagina de inicio",
+            "valido_hasta": "31-12-2024"
+        },
+        {
+            "titulo": "Envío gratis en tu primer pedido 🚴",
+            "descripcion": "Realiza tu primer pedido y el costo de envío corre por nuestra cuenta.monto minimo 40 soles",
+            "valido_hasta": "31-12-2024"
+        }
+        ],
+    "opciones": [
+        "volver al inicio"
+    ]
+    },
+    "ver_horario": {
+    "mensaje": "Estos son nuestros horarios :",
+    "detalles": [
+        {
+            "dia": "Lunes",
+            "horario": "de 15:00 pm  a 23:59 pm"
+        },
+        {
+            "dia": "Martes",
+            "horario": "de 15:00 pm  a 23:59 pm"
+        },
+        {
+            "dia": "Miercoles",
+            "horario": "de 15:00 pm  a 23:59 pm"
+        },
+        {
+            "dia": "jueves",
+            "horario": "de 15:00 pm  a 23:59 pm"
+        },
+        {
+            "dia": "viernes",
+            "horario": "de 15:00 pm  a 23:59 pm"
+        },
+        {
+            "dia": "sabado",
+            "horario": "de 15:00 pm  a 23:59 pm"
+        }
+    ],
+    "opciones": [
+        "volver al inicio"
+    ]
+    },
+    "informacion_contacto": {
+        "mensaje": "Puedes contactarnos al correo dejavurestobar2024@gmail.com o al teléfono +51 908 870 299. ¿Hay algo más en lo que pueda ayudarte?",
+        "opciones": [
+            "volver al inicio"
+        ]
+    },
+    "volver_al_inicio": {
+        "mensaje": "¿En qué más puedo ayudarte? Por favor selecciona una opción que no hayas visto aún:",
+        "opciones": [
+            "ver menú",
+            "hacer un pedido",
+            "ver ofertas",
+            "informacion de contacto",
+            "ver horario"
+        ]
+    },
+    "error": {
+        "mensaje": "Lo siento, ocurrió un error. Por favor intenta de nuevo.",
+        "opciones": [
+            "volver al inicio"
+        ]
+    }
+}

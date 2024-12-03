@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ofrecemos servicio de calidad, producto difernciado y precios justos">
+    <meta name="keywords" content="restaurante,papas fritas amaillas, insumos de caliad, ofertas, carta, clientes, Dejavu">
+    <title>Quiénes Somos - Dejavu Food & Drinks</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #FFA500; /* Fondo naranja */
+            color: white;
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            background-color: rgba(0, 0, 0, 0.6); /* Fondo oscuro */
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #FFD700;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #f9f9f9;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: #FF8C00;
+        }
+
+        /* Estilo para el botón de retroceso */
+        .back-btn {
+            background-color: #FF4500;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .back-btn:hover {
+            background-color: #FF5E00;
+        }
+
+        /* Estilos para el acordeón */
+        .accordion {
+            background-color: #FF4500;
+            color: white;
+            cursor: pointer;
+            padding: 15px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            font-size: 18px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .accordion:hover {
+            background-color: #FF8C00;
+        }
+
+        .panel {
+            padding: 0 18px;
+            display: none;
+            background-color: rgba(0, 0, 0, 0.6);
+            margin-bottom: 10px;
+            border-radius: 5px;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        footer {
+            background-color: #FF4500;
+            padding: 10px;
+            text-align: center;
+            color: white;
+        }
+
+        footer p {
+            margin: 0;
+        }
+        .image-container {
+            text-align: center;
+            }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            }
+
+        /* Ajustes para pantallas pequeñas */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 24px;
+            }
+
+            p {
+                font-size: 16px;
+            }
+             /* Estilo para centrar la imagen */
+            .image-container {
+            text-align: center;
+            }
+            .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>¿Quiénes Somos?</h1>
+        <!-- Aquí se puede colocar la imagen -->
+        <img src="static/clientes.jpeg" alt="Foto del Restaurante Dejavu" style="width:100%; max-width: 600px; border-radius: 10px; margin-bottom: 20px;">
+
+        <p>En el año <span class="highlight">2015</span> nosotros nos dedicábamos a atender ciertos establecimientos con papas procesadas y papas al hilo, pero para el año <span class="highlight">2019</span>, cuando llegó la pandemia, muchos negocios cerraron, entre ellos clientes nuestros. Así que tuvimos que reinventarnos.</p>
+
+        <p>Pero, así como nacen amenazas también aparecen las oportunidades. Vimos que la demanda de clientes de pedidos por delivery creció vertiginosamente.</p>
+
+        <p>Tratando de aprovechar esa necesidad y aprovechando nuestra fortaleza en el procesamiento de papas, nació <span class="highlight">Dejavu Food & Drinks</span>.</p>
+
+        <p>Nosotros somos un restaurante de comida rápida con muchos años de experiencia en la elaboración de papas, y nuestra especialidad son las <span class="highlight">papas amarillas onduladas</span>. Hoy en día contamos con un solo local ubicado en el distrito de Pueblo Libre pero somos uno de los pocos restaurantes que maneja el formato de papas fritas amarillas onduladas en este sector.</p>
+
+        <p>Nuestra misión es siempre <span class="highlight">servirlos cada día mejor</span>, con un <span class="highlight">producto diferenciado</span> y a un <span class="highlight">precio justo.</span></p>
+
+        <!-- Acordeón - Qué ofrecemos -->
+        <button class="accordion">¿Qué Ofrecemos?</button>
+        <div class="panel">
+            <p>Las mejores hamburguesas de carne acompañadas con insumos de calidad, como un pan brioche de 12cm de diámetro y 7 cm de altura, además de otras bondades del producto.</p>
+            <p>Tenemos las mejores papas fritas amarillas onduladas del mercado. Nuestro proceso para su elaboración nos lleva a tener una papa amarilla frita, cremosa por dentro y crocante por fuera, lo que da la apariencia de que estamos comiendo papas horneadas cuando en realidad no es así. Además de adicionales como alitas, salchipapas, etc.</p>
+            <p>Los invitamos a visitarnos o ver nuestra carta por esta página.</p>
+        </div>
+
+        <!-- Botón de retroceso -->
+        <a href="/" class="back-btn">Volver a la página principal</a>
+    </div>
+
+    <footer>
+        <p>© 2024 Dejavu Food & Drinks. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        // Obtener todos los botones con la clase 'accordion'
+        var acc = document.getElementsByClassName("accordion");
+
+        // Añadir un evento de clic a cada uno de los botones
+        for (var i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                // Alternar el estado de despliegue del contenido
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+
+                // Si el panel está visible, ocultarlo; si está oculto, mostrarlo
+                if (panel.style.display === "block") {
+                    panel.style.display = "none";
+                } else {
+                    panel.style.display = "block";
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>

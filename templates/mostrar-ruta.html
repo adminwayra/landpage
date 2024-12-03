@@ -5,29 +5,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mostrar Ruta</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ api_key }}&libraries=places"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ api_key_google }}&libraries=places"></script>
     <style>
         #map {
             height: 700px;
             width: 100%;
+            
+        }
+        #map, #info {
+            margin-bottom: 20px;
+        }
+        footer {
+        background-color: orangered;
+        color: white;
+        padding: 5px;
+        text-align: center;
+        font-size: 24px;
+        display: block;
+        
+        border-radius: 50%;        
+        }
+
+        footer nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        footer nav ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+
+        footer nav ul li a {
+            color: white;
+            text-decoration: none;
         }
     </style>
 </head>
 <body>
     <h1>Ruta hacia Dejavu Food & Drinks</h1>
 
+    <div id="map"></div>
+    <div id="info"></div>
+    
     <!-- Reproductor de audio -->
     <audio id="audioPlayer" controls>
         <source src="{{ url_for('static', filename='audio.mp3') }}" type="audio/mp3">
         Tu navegador no soporta el elemento de audio.
     </audio>
-
-    <div id="map"></div>
-    <div id="info"></div>
+    <footer>
+        <nav>
+          <ul>
+            <li><a href="https://www.dejavurestobar.com.pe/nuestra-carta">Nuestra Carta</a></li>
+          </ul>  
+        </nav>
+    </footer>
 
     <script>
-        async function generateAudio() {
-            const text = "Estamos ubicados en calle Rosatoledo 284, Pueblo Libre, frente al Bolivariano.";
+        async function generateAudio(text) {
+            // Aquí pasamos el texto con el tiempo de llegada (duration)
             const response = await fetch('/text-to-speech', {
                 method: 'POST',
                 headers: {
@@ -38,6 +74,10 @@
 
             if (response.ok) {
                 console.log('Audio generado correctamente');
+                
+                // Reproducir el audio automáticamente después de que se haya generado
+                const audioPlayer = document.getElementById('audioPlayer');
+                audioPlayer.play();  // Esto reproduce el audio inmediatamente.
             } else {
                 console.error('Error al generar audio');
             }
@@ -72,9 +112,18 @@
                         directionsRenderer.setDirections(result);
                         const route = result.routes[0];
                         const distance = route.legs[0].distance.text;
-                        const duration = route.legs[0].duration.text;
+                        const durationText = route.legs[0].duration.text;
 
-                        document.getElementById('info').innerHTML = `Distancia: ${distance}, Tiempo: ${duration}`;
+                        // Aquí extraemos solo el número de minutos usando una expresión regular
+                        const durationMinutes = durationText.match(/\d+/); // Esto obtiene solo el número de minutos
+                        
+                        if (durationMinutes) {
+                            const text = `Estamos ubicados en calle Rosatoledo 284, Pueblo Libre, frente al Bolivariano. El tiempo estimado de llegada es de ${durationMinutes[0]} minutos.`;
+                            generateAudio(text); // Llamamos a la función para generar el audio
+                        }
+
+                        // Mostrar la información en la página
+                        document.getElementById('info').innerHTML = `Distancia: ${distance}, Tiempo: ${durationText}`;
                     } else {
                         window.alert('Directions request failed due to ' + status);
                     }
@@ -84,10 +133,8 @@
             });
         }
 
-        window.onload = async () => {
-            await generateAudio(); // Genera el audio al cargar la página
-            initMap(); // Inicializa el mapa
-        };
+        window.onload = initMap; // Inicializa el mapa al cargar la página
     </script>
 </body>
+
 </html>

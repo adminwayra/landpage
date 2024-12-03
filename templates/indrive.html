@@ -1,0 +1,51 @@
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
+from webdriver_manager.chrome import ChromeDriverManager
+import time
+
+# Configurar Selenium
+options = Options()
+options.add_argument('--headless')  # Ejecutar en modo headless (sin ventana)
+options.add_argument('--disable-gpu')
+options.add_argument('--no-sandbox')
+
+driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+
+# URL de la página de inDriver
+url = "https://couriers.indrive.com/new-order"
+
+try:
+    # Cargar la página
+    driver.get(url)
+
+    # Esperar a que cargue (ajusta el tiempo según sea necesario)
+    time.sleep(5)
+
+    # Encontrar el campo de dirección de recogida
+    pickup_input = driver.find_element(By.CLASS_NAME, "class_del_campo_recojo")
+    pickup_input.send_keys("Dirección de recogida ejemplo")
+
+    # Encontrar el campo de dirección de entrega
+    delivery_input = driver.find_element(By.CLASS_NAME, "class_del_campo_entrega")
+    delivery_input.send_keys("Dirección de entrega ejemplo")
+
+    # Presionar el botón de enviar (ajusta según la estructura del sitio)
+    submit_button = driver.find_element(By.CLASS_NAME, "class_del_boton_enviar")
+    submit_button.click()
+
+    # Esperar para procesar la respuesta (ajusta el tiempo si es necesario)
+    time.sleep(5)
+
+    # Capturar resultados (si hay algún mensaje de confirmación)
+    confirmation_message = driver.find_element(By.CLASS_NAME, "class_del_mensaje_confirmacion")
+    print("Mensaje de confirmación:", confirmation_message.text)
+
+except Exception as e:
+    print("Ocurrió un error:", e)
+
+finally:
+    # Cerrar el navegador
+    driver.quit()

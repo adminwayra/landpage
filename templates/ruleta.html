@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="¡Gira la ruleta de descuentos y gana premios exclusivos en nuestro restaurante!">
+    <meta name="keywords" content="ruleta de descuentos, ofertas, promociones, descuentos dinámicos">
+    <title>Ruleta de Descuentos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            color: white;
+            background-color: black;
+            margin: 0;
+            padding: 0;
+        }
+         /* Estilo para el contenedor de texto */
+         .mecanica-juego-container {
+            /*position: flex;*/
+            top: 20px; /* Ajusta la posición según lo necesites */
+            left: 50%;
+            
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 5px;
+            border-radius: 10px;
+            max-width: 90%;
+            text-align: center;
+            font-size: 20px;
+            z-index: 999; /* Asegurarse de que esté por encima de otros elementos */
+        }
+
+        .expandir-texto {
+            color: #FFD700;
+            cursor: pointer;
+        }
+        h1 {
+            font-size: 20px;
+        }
+
+        /* Estilo para la sección de texto expandido */
+        .texto-expandido {
+            display: none; /* Inicialmente oculto */
+            font-size: 14px;
+            margin-top: 5px;
+            color: #FFD700;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .wheel-container {
+            position: relative;
+            margin: 0 auto;
+            width: 500px;
+            height: 500px;
+        }
+
+        #wheel {
+            border-radius: 50%;
+            border: 5px solid #000;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .arrow {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-top: 30px solid black;
+            /* Flecha con punta hacia el centro */
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #FF5722;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #E64A19;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 20px;
+            color: white;
+            transition: font-size 0.5s ease;
+        }
+
+        .result.highlight {
+            font-size: 30px;
+            font-weight: bold;
+            color: #FF5722;
+        }
+
+        footer {
+            background-color: orangered;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 50%;
+            display: block;
+        }
+
+        footer nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        footer nav ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+
+        footer nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        @media screen and (max-width: 600px) {
+            body {
+                font-size: 16px;
+            }
+
+            /* Estilos para los globos */
+            .balloon {
+                position: absolute;
+                width: 50px;
+                height: 70px;
+                background-image: url('static/globo.png');
+                /* Ruta de la imagen del globo */
+                background-size: cover;
+                animation: floatBalloon 10s infinite linear;
+                z-index: 100;
+                /* Aseguramos que los globos estén sobre otros elementos */
+            }
+
+            /* Animación de los globos flotando */
+            @keyframes floatBalloon {
+                0% {
+                    transform: translateY(0) rotate(0deg);
+                }
+
+                50% {
+                    transform: translateY(-50vh) rotate(180deg);
+                }
+
+                100% {
+                    transform: translateY(0) rotate(360deg);
+                }
+            }
+
+            /* Posición aleatoria de los globos */
+            .balloon-left {
+                left: 10%;
+                bottom: -20px;
+                animation-duration: 12s;
+                animation-delay: 0s;
+            }
+
+            .balloon-right {
+                right: 10%;
+                bottom: -20px;
+                animation-duration: 14s;
+                animation-delay: 2s;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>¡Gira la ruleta y gana 🎅🎅! <span class="expandir-texto" onclick="toggleTextoExpandido()">...</span></h1>
+        
+        <div class="mecanica-juego-container">
+            <!-- Texto expandido -->
+            <div class="texto-expandido" id="texto-expandido">
+                <h3>Cuando gires la ruleta, podrás obtener un descuento que va del 10% al 35%. Tienes hasta 2 oportunidades para girar la ruleta,no olvides ingresar tu nombre, dirección y correo antes de enviar tu pedido por whatsapp.</h3>
+            </div>
+        </div>
+        <!-- Contenedores de globos a los costados -->
+        <div class="balloon balloon-left"></div>
+        <div class="balloon balloon-right"></div>
+        <div class="wheel-container">
+            <!-- Flecha fija -->
+            <div class="arrow"></div>
+            <!-- Canvas para la ruleta -->
+            <canvas id="wheel" width="500" height="500"></canvas>
+        </div>
+        <button id="spin-btn">Girar</button>
+        <button id="accept-btn" style="display: none;">Aceptar Resultado</button>
+        <!-- Botón para aceptar el resultado -->
+        <div class="result">
+            <p id="result-text"></p>
+        </div>
+    </div>
+   
+
+    <script>
+        let segments = [];
+        const colors = ['#FF5733', '#33FF57', '#3357FF', '#FFC300', '#DAF7A6', '#C70039', '#900C3F', '#581845'];
+        const canvas = document.getElementById('wheel');
+        const ctx = canvas.getContext('2d');
+        const spinBtn = document.getElementById('spin-btn');
+        const acceptBtn = document.getElementById('accept-btn');
+        const resultText = document.getElementById('result-text');
+        const wheelRadius = canvas.width / 2;
+        let currentAngle = 0;
+        let isSpinning = false;
+        let spinVelocity = 0;
+        let winningSegment = -1;
+        let segmentAngle = 0;
+        let spinCount = 0;  // Contador de giros
+        let result = "";    // Variable para almacenar el resultado del giro
+        // Función para mostrar/ocultar el texto expandido
+        function toggleTextoExpandido() {
+            const textoExpandido = document.getElementById('texto-expandido');
+            const textoExpandidoVisible = textoExpandido.style.display === 'block';
+            
+            // Alternar la visibilidad
+            textoExpandido.style.display = textoExpandidoVisible ? 'none' : 'block';
+        }
+
+        // Cargar los premios desde el backend
+        fetch('/premios')
+            .then(response => response.json())
+            .then(data => {
+                segments = data.premios;
+                console.log(segments);  // Imprimir premios en la consola
+                drawWheel(); // Dibuja la ruleta al cargar los datos
+            })
+            .catch(error => console.error("Error al obtener los premios:", error));
+
+        // Dibujar la ruleta
+        function drawWheel() {
+            if (!segments.length) return;
+
+            segmentAngle = (2 * Math.PI) / segments.length;
+            for (let i = 0; i < segments.length; i++) {
+                const startAngle = currentAngle + i * segmentAngle;
+                const endAngle = startAngle + segmentAngle;
+
+                // Dibujar el segmento
+                ctx.beginPath();
+                ctx.moveTo(wheelRadius, wheelRadius);
+                ctx.arc(wheelRadius, wheelRadius, wheelRadius, startAngle, endAngle);
+                ctx.fillStyle = colors[i % colors.length];
+                ctx.fill();
+                ctx.stroke();
+
+                // Dibujar el texto
+                ctx.save();
+                ctx.translate(wheelRadius, wheelRadius);
+                ctx.rotate(startAngle + segmentAngle / 2);
+                ctx.textAlign = 'right';
+                ctx.fillStyle = '#fff';
+                ctx.font = '18px Arial';
+                ctx.fillText(segments[i].premio, wheelRadius - 10, 10);
+                ctx.restore();
+            }
+        }
+
+        // Identificar el segmento ganador
+        function identifyWinningSegment() {
+            const normalizedAngle = (currentAngle % (2 * Math.PI) + 2 * Math.PI) % (2 * Math.PI);
+            const adjustedAngle = (normalizedAngle + Math.PI / 2) % (2 * Math.PI); // Ajuste por la flecha arriba
+            winningSegment = Math.floor((segments.length - adjustedAngle / segmentAngle) % segments.length);
+        }
+
+        function displayResult() {
+            // Usamos `segments[winningSegment].premio` para acceder a la propiedad 'premio' del objeto en esa posición
+            if (segments[winningSegment].premio === 'No tienes premio') {
+                resultText.textContent = 'No obtuviste ningún premio, será para la próxima 😭😔😔';
+                result = 'No tienes premio';
+                winningCode = segments[winningSegment].codigo;  // Guardar el código de "No tienes premio"
+            } else {
+                // Si el premio es válido, mostrar el premio y el código
+                resultText.textContent = `¡Felicidades 😁😍😍! Has obtenido: ${segments[winningSegment].premio}`;
+                resultText.classList.add('highlight');
+                result = segments[winningSegment].premio;  // Guardar el premio
+                winningCode = segments[winningSegment].codigo;  // Guardar el código del premio
+                console.log(winningCode);  // Mostrar el código en consola
+
+                // Mostrar el botón de "Aceptar Resultado"
+                acceptBtn.style.display = 'inline-block';
+
+                setTimeout(() => {
+                    resultText.classList.remove('highlight');
+                }, 4000);
+            }
+        }
+
+
+        // Girar la ruleta
+        function spinWheel() {
+            if (isSpinning || spinCount >= 2) return;  // Evitar más giros si ya se ha girado 2 veces
+
+            spinCount++;  // Incrementar el contador de giros
+
+            if (spinCount === 2) {
+                spinBtn.setAttribute('disabled', 'true');  // Deshabilitar el botón después de 2 giros
+                // Mostrar mensaje de finalización
+            }
+
+            isSpinning = true;
+            spinVelocity = Math.random() * 10 + 10;
+
+            const spin = setInterval(() => {
+                currentAngle += spinVelocity * (Math.PI / 180);
+                spinVelocity *= 0.97;
+
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                drawWheel();
+
+                if (spinVelocity <= 0.2) {
+                    clearInterval(spin);
+                    isSpinning = false;
+                    identifyWinningSegment();
+                    displayResult();
+                }
+            }, 16);
+        }
+
+        // Función para aceptar el resultado y almacenar el premio
+        function acceptResult() {
+            // Redirigir a la página 'carta.html' pasando el código del premio como parámetro en la URL
+            window.location.href = `/nuestra-carta?codigo=${winningCode}`;  // Redirigir con el código del premio
+            acceptBtn.style.display = 'none';  // Ocultar el botón "Aceptar Resultado"
+        }
+
+        // Dibujar flecha y ruleta inicial
+        drawWheel();
+        spinBtn.addEventListener('click', spinWheel);
+        acceptBtn.addEventListener('click', acceptResult);  // Al hacer clic en "Aceptar Resultado"
+    </script>
+</body>
+
+</html>
