@@ -16,12 +16,14 @@
             margin: 0;
             padding: 0;
         }
-         /* Estilo para el contenedor de texto */
-         .mecanica-juego-container {
+
+        /* Estilo para el contenedor de texto */
+        .mecanica-juego-container {
             /*position: flex;*/
-            top: 20px; /* Ajusta la posición según lo necesites */
+            top: 20px;
+            /* Ajusta la posición según lo necesites */
             left: 50%;
-            
+
             background-color: rgba(0, 0, 0, 0.7);
             color: white;
             padding: 5px;
@@ -29,20 +31,23 @@
             max-width: 90%;
             text-align: center;
             font-size: 20px;
-            z-index: 999; /* Asegurarse de que esté por encima de otros elementos */
+            z-index: 999;
+            /* Asegurarse de que esté por encima de otros elementos */
         }
 
         .expandir-texto {
             color: #FFD700;
             cursor: pointer;
         }
+
         h1 {
             font-size: 20px;
         }
 
         /* Estilo para la sección de texto expandido */
         .texto-expandido {
-            display: none; /* Inicialmente oculto */
+            display: none;
+            /* Inicialmente oculto */
             font-size: 14px;
             margin-top: 5px;
             color: #FFD700;
@@ -63,6 +68,8 @@
             border-radius: 50%;
             border: 5px solid #000;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            height: 100%;
         }
 
         .arrow {
@@ -136,6 +143,12 @@
                 font-size: 16px;
             }
 
+            .wheel-container {
+                width: 90vw;
+                /* 90% del ancho de la pantalla */
+                height: 90vw;
+            }
+
             /* Estilos para los globos */
             .balloon {
                 position: absolute;
@@ -185,11 +198,13 @@
 <body>
     <div class="container">
         <h1>¡Gira la ruleta y gana 🎅🎅! <span class="expandir-texto" onclick="toggleTextoExpandido()">...</span></h1>
-        
+
         <div class="mecanica-juego-container">
             <!-- Texto expandido -->
             <div class="texto-expandido" id="texto-expandido">
-                <h3>Cuando gires la ruleta, podrás obtener un descuento que va del 10% al 35%. Tienes hasta 2 oportunidades para girar la ruleta,no olvides ingresar tu nombre, dirección y correo antes de enviar tu pedido por whatsapp.</h3>
+                <h3>Cuando gires la ruleta, podrás obtener un descuento que va del 10% al 35%. Tienes hasta 2
+                    oportunidades para girar la ruleta,no olvides ingresar tu nombre, dirección y correo antes de enviar
+                    tu pedido por whatsapp.</h3>
             </div>
         </div>
         <!-- Contenedores de globos a los costados -->
@@ -208,11 +223,20 @@
             <p id="result-text"></p>
         </div>
     </div>
-   
+
 
     <script>
         let segments = [];
-        const colors = ['#FF5733', '#33FF57', '#3357FF', '#FFC300', '#DAF7A6', '#C70039', '#900C3F', '#581845'];
+        const colors = [
+            '#FF5733',     // Rojo Naranja
+            '#00FF00',     // Verde Neón
+            '#3357FF',     // Azul Cobalto
+            '#FFC300',     // Amarillo Dorado
+            '#FF00FF',     // Magenta
+            '#C70039',     // Rojo Carmín
+            '#900C3F',     // Rojo Burdeos
+            '#581845'      // Púrpura Oscuro
+        ];
         const canvas = document.getElementById('wheel');
         const ctx = canvas.getContext('2d');
         const spinBtn = document.getElementById('spin-btn');
@@ -230,7 +254,7 @@
         function toggleTextoExpandido() {
             const textoExpandido = document.getElementById('texto-expandido');
             const textoExpandidoVisible = textoExpandido.style.display === 'block';
-            
+
             // Alternar la visibilidad
             textoExpandido.style.display = textoExpandidoVisible ? 'none' : 'block';
         }

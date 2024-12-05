@@ -439,9 +439,13 @@ def carta():
     # Obtener el código del premio desde la URL y guardarlo en la sesión
     codigo_premio = request.args.get('codigo', 0)  # Si no hay código, se asigna 0
     session['codigo'] = codigo_premio  # Guardamos el código en la sesión
-
+    # Cargar ofertas desde un archivo JSON en la carpeta static
+    path = os.path.join(STATIC_FOLDER, "productos.json")
+    with open(path, "r", encoding="utf-8") as f:
+        productos = json.load(f)
+   
     # Pasar el código de premio a la plantilla
-    return render_template("carta.html",  codigo_premio=codigo_premio)
+    return render_template("carta.html",  platos=productos, codigo_premio=codigo_premio)
 
 @app.route("/premios")
 def premios():

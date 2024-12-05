@@ -97,6 +97,8 @@
             margin-top: 10px;
         }
 
+       
+
         /* Ajustes para pantallas pequeñas */
         @media (max-width: 600px) {
             .promo {
@@ -186,7 +188,7 @@
         <p>Inicia tu pedido para atenderlo por whatsapp 😵‍💫😵‍💫🏃🏃‍♂️🏃‍♀️</p>
         <p>No incluye costo delivery</p>
     </div>
-
+    
     <div class="menu-container">
         <!-- Aquí se generarán dinámicamente los platos -->
     </div>
@@ -445,7 +447,8 @@
 
                     const pedidoDataResponse = await pedidoResponse.json();
 
-                    alert('Pedido agregado con éxito.');
+                    alert('Pedido agregado con éxito.Dale click en enviar pedido por whatsapp');
+                    
                     habilitarWhatsapp();
                 }
 
@@ -485,7 +488,8 @@
         // Mostrar los platos al cargar la página
 
     </script>
-
+      <!-- Aquí colocamos el JSON de productos dentro de un atributo data -->
+      <div id="platos" data-platos='{{ platos | tojson | e }}'></div>
     <!-- obtener carta desde mysql -->
     <script src="{{ url_for('static', filename='js/obtenercarta.js') }}"></script>
 </body>

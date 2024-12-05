@@ -1,255 +1,310 @@
 [
     {
-        "idPlato": 48,
-        "nombre": "Sabor & Frescura",
-        "descPlato": "01 Cheese Burguer,Porción de deliciosas papa crocantes amarillas y un jugo de frutas(fresa, naraja ó límon)",
+        "constante": true,
         "dcto": 10,
-        "precioVenta": 25,
-        "imagen": "sabor_frescura.jpg"
-    },
-	{
-		"idPlato" : 1,
-		"nombre" : "Hamburguesa Clasica",
-		"descPlato" : "01 hamburguesa, papas crocantes amarillas, pan brioche,ensalada",
-		"dcto" : 25,
-		"precioVenta" : 20,
-		"idTipoPlato" : "Hamburguesas",
-		"imagen" : "hamburguesaClasica.jpg"
-	},
-	{
-		"idPlato" : 2,
-		"nombre" : "Hamburguesa Royal",
-		"descPlato" : "01 hamburguesa, papas crocantes amarillas, pan brioche,ensalada,huevo,cheese",
-		"dcto" : 25,
-		"precioVenta" : 24,
-		"idTipoPlato" : "Hamburguesa",
-		"imagen" : "HamburguesaRoyal.jpg"
-	},
-	{
-		"idPlato" : 3,
-		"nombre" : "Cheese Burguer",
-		"descPlato" : "01 hamburguesa, papas crocantes amarillas, pan brioche,ensalada,cheese",
-		"dcto" : 25,
-		"precioVenta" : 22,
-		"idTipoPlato" : "Hamburguesa",
-		"imagen" : "cheeseBurguer.jpg"
-	},
-	{
-		"idPlato" : 4,
-		"nombre" : "Filete de Pollo",
-		"descPlato" : "Pechuga a la plancha, papas crocantes amarillas, pan brioche,ensalada",
-		"dcto" : 20,
-		"precioVenta" : 18,
-		"idTipoPlato" : "Sanguches",
-		"imagen" : "filetePollo.jpg"
-	},
-	{
-		"idPlato" : 5,
-		"nombre" : "Crispy Chicken",
-		"descPlato" : "Pechuga crocante, papas crocantes amarillas, pan brioche,ensalada",
-		"dcto" : 20,
-		"precioVenta" : 20,
-		"idTipoPlato" : "Sanguches",
-		"imagen" : "crispyChicken.jpg"
-	},
-	{
-		"idPlato" : 22,
-		"nombre" : "06 Unidades de alas en Salsa",
-		"descPlato" : "06 Alitas bañadas en una salsa al escoger,papas crocantes amarillas onduladas,cremas cacera",
-		"dcto" : 20,
-		"precioVenta" : 22,
-		"idTipoPlato" : "Alitas",
-		"imagen" : "alitasBBQ.jpg"
-	},
-	{
-		"idPlato" : 23,
-		"nombre" : "12 Unidades de alas en salsa",
-		"descPlato" : "12 Alitas bañadas en 2 salsas al escoger,papas crocantes amarillas onduladas,cremas caceras",
-		"dcto" : 20,
-		"precioVenta" : 40,
-		"idTipoPlato" : "Alitas",
-		"imagen" : "alitasAcevichadas.jpg"
-	},
-	{
-		"idPlato" : 24,
-		"nombre" : "06 Unidades de alas broaster",
-		"descPlato" : "06 Alitas broster ,papas crocantes amarillas  onduladas,cremas caceras",
-		"dcto" : 20,
-		"precioVenta" : 22,
-		"idTipoPlato" : "Broaster",
-		"imagen" : "alitasBroster.jpg"
-	},
-	{
-		"idPlato" : 25,
-		"nombre" : "Pechuga Broaster",
-		"descPlato" : "Pechuga empanizada con nuestra receta secreta, Papas crocantes amarillas, Ensalada y cremas cas",
-		"dcto" : 20,
-		"precioVenta" : 18,
-		"idTipoPlato" : "Broaster",
-		"imagen" : "pechugaPollo.jpg"
-	},
-	{
-		"idPlato" : 26,
-		"nombre" : "Chicharron de Pollo ",
-		"descPlato" : "Tiras de pollo empanizada con nuestra receta secreta, Papas crocantes amarillas, Ensalada y cre",
-		"dcto" : 20,
-		"precioVenta" : 20,
-		"idTipoPlato" : "Broaster",
-		"imagen" : "chicharronPollo.jpg"
-	},
-	{
-		"idPlato" : 27,
-		"nombre" : "Salchipapa Clasica ",
-		"descPlato" : "Salchicha Frankfuter, papas crocangtes amarillas, acompañada de cremas caseras",
-		"dcto" : 20,
-		"precioVenta" : 18,
-		"idTipoPlato" : "Salchipapa",
-		"imagen" : "salchiAlitas.jpg"
-	},
-	{
-		"idPlato" : 28,
-		"nombre" : "Salchi - Alitas",
-		"descPlato" : "Salchicha Frankfuter, papas crocantes amarillas, 04 Alitas con una salsa al gusto,acompañada de",
-		"dcto" : 20,
-		"precioVenta" : 25,
-		"idTipoPlato" : "Salchipapa",
-		"imagen" : "salchiAlitas.jpg"
-	},
-	{
-		"idPlato" : 29,
-		"nombre" : "Salchipapa Royal",
-		"descPlato" : "Salchicha Frankfuter, huevo, papas crocangtes amarillas, acompañada de cremas caseras",
-		"dcto" : 20,
-		"precioVenta" : 20,
-		"idTipoPlato" : "Salchipapa",
-		"imagen" : "salchiAlitas.jpg"
-	},
-	{
-		"idPlato" : 30,
-		"nombre" : "06Tequeños Venezolanos",
-		"descPlato" : "06 unidades de tequeños, acompañados de cremas caceras",
-		"dcto" : 25,
-		"precioVenta" : 12,
-		"idTipoPlato" : "Acompañamiento",
-		"imagen" : "tequenos.jpg"
-	},
-	
-	{
-		"idPlato" : 32,
-		"nombre" : "Papas fritas Amarillas",
-		"descPlato" : "Porción de deliciosas papa crocantes amarillas y acompañadas con cremas caseras",
-		"dcto" : 25,
-		"precioVenta" : 14,
-		"idTipoPlato" : "Papas",
-		"imagen" : "papitasFritas.jpg"
-	},
-	
-	{
-		"idPlato" : 36,
-		"nombre" : "Café Espreso",
-		"descPlato" : "15 gr de delicioso Café concentrado",
-		"dcto" : 15,
-		"precioVenta" : 6,
-		"idTipoPlato" : "Bebidas Caliente",
-		"imagen" : "cafeExpresso.jpg"
-	},
-	{
-		"idPlato" : 37,
-		"nombre" : "Café Americano ",
-		"descPlato" : "Café concentrado mezclado con agua caliente",
-		"dcto" : 15,
-		"precioVenta" : 6,
-		"idTipoPlato" : "Bebidas Caliente",
-		"imagen" : "cafeAmericano.jpg"
-	},
-	{
-		"idPlato" : 38,
-		"nombre" : "Cappuccino",
-		"descPlato" : "Leche fresca o en polvo , café en grano",
-		"dcto" : 15,
-		"precioVenta" : 7,
-		"idTipoPlato" : "Bebidas Caliente",
-		"imagen" : "capuccino.jpg"
-	},
-	{
-		"idPlato" : 39,
-		"nombre" : "Mocaccino",
-		"descPlato" : "Leche fresca o en polvo , café concentrado y cacao en polvo",
-		"dcto" : 15,
-		"precioVenta" : 8,
-		"idTipoPlato" : "Bebidas Caliente",
-		"imagen" : "mocaccino.jpg"
-	},
-	{
-		"idPlato" : 40,
-		"nombre" : "Latte ",
-		"descPlato" : "Leche fresca o en polvo en mayor proporción que el café concentrado",
-		"dcto" : 15,
-		"precioVenta" : 7,
-		"idTipoPlato" : "Bebidas Caliente",
-		"imagen" : "latte.jpg"
-    },
-  	{
-    	"idPlato" : 41,
-		"nombre" : "Me Quedo Contigo",
-		"descPlato" : "01 deliciosa Cheese Burguer. 01 porción de papas fritas amarillas onduladas, 01 bebida de medio litro.",
-		"dcto" : 20,
-		"precioVenta" : 25,
-		"idTipoPlato" : "Promociones",
-		"imagen" : "meQuedoContigo.jpg"
+        "descPlato": "01 Cheese Burguer,Porción de deliciosas papa crocantes amarillas y un jugo de frutas(fresa, naraja ó límon)",
+        "disponible": true,
+        "id_plato": 1,
+        "id_tipo_plato": 9,
+        "imagen": "sabor_frescura.jpg",
+        "nombre": "Sabor & Frescura",
+        "precioVenta": 25.0
     },
     {
-        "idPlato" : 42,
-        "nombre" : "Trío de Infarto",
-        "descPlato" : "Porción de 06 deliciosas alitas BBQ, 01 porción de salchicha frankfurter, 01 porción de papas fritas amarillas onduladas, 01 hamburguesa Clasica.",
-        "dcto" : 25,
-        "precioVenta" : 40,
-        "idTipoPlato" : "Promociones",
-        "imagen" : "trioInfarto.jpg"
-    },
-	{
-    	"idPlato" : 43,
-		"nombre" : "02 Cheese Burguers",
-		"descPlato" : "02 Hamburguesas de 150 gr de carne , Queso Cheddar. tomate, lechuga y cebolla en rodajas. Además de 01 porción de deliciosas papas fritas amarillas onduladas",
-		"dcto" : 22,
-		"precioVenta" : 40,
-		"idTipoPlato" : "Promociones",
-		"imagen" : "partidaDoble.jpg"
+        "constante": false,
+        "dcto": 10,
+        "descPlato": "01 hamburguesa, papas crocantes amarillas, pan brioche,ensalada",
+        "disponible": true,
+        "id_plato": 2,
+        "id_tipo_plato": 1,
+        "imagen": "hamburguesaClasica.jpg",
+        "nombre": "Hamburguesa Clasica",
+        "precioVenta": 20.0
     },
     {
-        "idPlato" : 44,
-        "nombre" : "Tequeño Te Quiero Con Alas",
-        "descPlato" : "06 deliciosos tequeños rellenos con queso, 06  alitas Crispy y 01 porción de papas fritas amarillas onduladas.",
-        "dcto" : 25,
-        "precioVenta" : 30,
-        "idTipoPlato" : "Promociones",
-        "imagen" : "tequenoAlas.jpg"
-    },	
-	{
-        "idPlato" : 45,
-        "nombre" : "Tu Calientito Preferido",
-        "descPlato" : " 01 Pechuga de Pollo + 01 delicioso Capuccino.",
-        "dcto" : 20,
-        "precioVenta" : 25,
-        "idTipoPlato" : "Promociones",
-        "imagen" : "loncheEjecutivo.jpg"
-    },
-	{
-    	"idPlato" : 46,
-		"nombre" : "Sacia Tu Hambre",
-		"descPlato" : "01 Cheese Buguer, 01 porción de deliciosas papas fritas amarillas onduladas y 06 tequeños rellenos con queso",
-		"dcto" : 25,
-		"precioVenta" : 40,
-		"idTipoPlato" : "Promociones",
-		"imagen" : "saciahambre.jpg"
+        "constante": false,
+        "dcto": 10,
+        "descPlato": "01 hamburguesa, papas crocantes amarillas, pan brioche,ensalada,huevo,cheese",
+        "disponible": true,
+        "id_plato": 3,
+        "id_tipo_plato": 1,
+        "imagen": "HamburguesaRoyal.jpg",
+        "nombre": "Hamburguesa Royal",
+        "precioVenta": 24.0
     },
     {
-    	"idPlato" : 47,
-		"nombre" : "Mi Jama Preferida",
-		"descPlato" : "01 hamburguesa de 150gr de carne , 01 porción de Papas amarillas fritas onduladas, Plátano Frito, Huevo Frito,Arroz blanco y abundantes cremas , y a eso súmale una gaseosa de medio litro.",
-		"dcto" : 20,
-		"precioVenta" : 25,
-		"idTipoPlato" : "Promociones",
-		"imagen" : "pobre.jpg"
-    } 
+        "constante": false,
+        "dcto": 10,
+        "descPlato": "01 hamburguesa, papas crocantes amarillas, pan brioche,ensalada,cheese",
+        "disponible": true,
+        "id_plato": 4,
+        "id_tipo_plato": 1,
+        "imagen": "cheeseBurguer.jpg",
+        "nombre": "Cheese Burguer",
+        "precioVenta": 22.0
+    },
+    {
+        "constante": false,
+        "dcto": 10,
+        "descPlato": "Pechuga a la plancha, papas crocantes amarillas, pan brioche,ensalada",
+        "disponible": true,
+        "id_plato": 5,
+        "id_tipo_plato": 4,
+        "imagen": "filetePollo.jpg",
+        "nombre": "Filete de Pollo",
+        "precioVenta": 18.0
+    },
+    {
+        "constante": false,
+        "dcto": 10,
+        "descPlato": "Pechuga crocante, papas crocantes amarillas, pan brioche,ensalada",
+        "disponible": true,
+        "id_plato": 6,
+        "id_tipo_plato": 3,
+        "imagen": "crispyChicken.jpg",
+        "nombre": "Crispy Chicken",
+        "precioVenta": 20.0
+    },
+    {
+        "constante": false,
+        "dcto": 10,
+        "descPlato": "06 Alitas bañadas en una salsa al escoger,papas crocantes amarillas onduladas,cremas cacera",
+        "disponible": true,
+        "id_plato": 7,
+        "id_tipo_plato": 2,
+        "imagen": "alitasBBQ.jpg",
+        "nombre": "06 Unidades de alas en Salsa",
+        "precioVenta": 22.0
+    },
+    {
+        "constante": false,
+        "dcto": 10,
+        "descPlato": "12 Alitas bañadas en 2 salsas al escoger,papas crocantes amarillas onduladas,cremas caceras",
+        "disponible": true,
+        "id_plato": 8,
+        "id_tipo_plato": 2,
+        "imagen": "alitasAcevichadas.jpg",
+        "nombre": "12 Unidades de alas en salsa",
+        "precioVenta": 40.0
+    },
+    {
+        "constante": false,
+        "dcto": 10,
+        "descPlato": "06 Alitas broster ,papas crocantes amarillas  onduladas,cremas caceras",
+        "disponible": true,
+        "id_plato": 9,
+        "id_tipo_plato": 3,
+        "imagen": "alitasBroster.jpg",
+        "nombre": "06 Unidades de alas broaster",
+        "precioVenta": 22.0
+    },
+    {
+        "constante": false,
+        "dcto": 10,
+        "descPlato": "Pechuga empanizada con nuestra receta secreta, Papas crocantes amarillas, Ensalada y cremas cas",
+        "disponible": true,
+        "id_plato": 10,
+        "id_tipo_plato": 3,
+        "imagen": "pechugaPollo.jpg",
+        "nombre": "Pechuga Broaster",
+        "precioVenta": 18.0
+    },
+    {
+        "constante": false,
+        "dcto": 10,
+        "descPlato": "Tiras de pollo empanizada con nuestra receta secreta, Papas crocantes amarillas, Ensalada y cre",
+        "disponible": true,
+        "id_plato": 11,
+        "id_tipo_plato": 3,
+        "imagen": "chicharronPollo.jpg",
+        "nombre": "Chicharron de Pollo ",
+        "precioVenta": 20.0
+    },
+    {
+        "constante": false,
+        "dcto": 10,
+        "descPlato": "Salchicha Frankfuter, papas crocangtes amarillas, acompañada de cremas caseras",
+        "disponible": true,
+        "id_plato": 12,
+        "id_tipo_plato": 10,
+        "imagen": "salchiAlitas.jpg",
+        "nombre": "Salchipapa Clasica ",
+        "precioVenta": 18.0
+    },
+    {
+        "constante": false,
+        "dcto": 10,
+        "descPlato": "Salchicha Frankfuter, papas crocantes amarillas, 04 Alitas con una salsa al gusto,acompañada de",
+        "disponible": true,
+        "id_plato": 13,
+        "id_tipo_plato": 10,
+        "imagen": "salchiAlitas.jpg",
+        "nombre": "Salchi - Alitas",
+        "precioVenta": 25.0
+    },
+    {
+        "constante": false,
+        "dcto": 10,
+        "descPlato": "Salchicha Frankfuter, huevo, papas crocangtes amarillas, acompañada de cremas caseras",
+        "disponible": true,
+        "id_plato": 14,
+        "id_tipo_plato": 10,
+        "imagen": "salchiAlitas.jpg",
+        "nombre": "Salchipapa Royal",
+        "precioVenta": 20.0
+    },
+    {
+        "constante": false,
+        "dcto": 10,
+        "descPlato": "06 unidades de tequeños, acompañados de cremas caceras",
+        "disponible": true,
+        "id_plato": 15,
+        "id_tipo_plato": 8,
+        "imagen": "tequenos.jpg",
+        "nombre": "06Tequeños Venezolanos",
+        "precioVenta": 12.0
+    },
+    {
+        "constante": false,
+        "dcto": 10,
+        "descPlato": "Porción de deliciosas papa crocantes amarillas y acompañadas con cremas caseras",
+        "disponible": true,
+        "id_plato": 16,
+        "id_tipo_plato": 9,
+        "imagen": "papitasFritas.jpg",
+        "nombre": "Papas fritas Amarillas",
+        "precioVenta": 14.0
+    },
+    {
+        "constante": true,
+        "dcto": 10,
+        "descPlato": "15 gr de delicioso Café concentrado",
+        "disponible": true,
+        "id_plato": 17,
+        "id_tipo_plato": 5,
+        "imagen": "cafeExpresso.jpg",
+        "nombre": "Café Espreso",
+        "precioVenta": 6.0
+    },
+    {
+        "constante": true,
+        "dcto": 10,
+        "descPlato": "Café concentrado mezclado con agua caliente",
+        "disponible": true,
+        "id_plato": 18,
+        "id_tipo_plato": 5,
+        "imagen": "cafeAmericano.jpg",
+        "nombre": "Café Americano ",
+        "precioVenta": 6.0
+    },
+    {
+        "constante": true,
+        "dcto": 10,
+        "descPlato": "Leche fresca o en polvo , café en grano",
+        "disponible": true,
+        "id_plato": 19,
+        "id_tipo_plato": 5,
+        "imagen": "capuccino.jpg",
+        "nombre": "Cappuccino",
+        "precioVenta": 7.0
+    },
+    {
+        "constante": true,
+        "dcto": 10,
+        "descPlato": "Leche fresca o en polvo , café concentrado y cacao en polvo",
+        "disponible": true,
+        "id_plato": 20,
+        "id_tipo_plato": 5,
+        "imagen": "mocaccino.jpg",
+        "nombre": "Mocaccino",
+        "precioVenta": 8.0
+    },
+    {
+        "constante": true,
+        "dcto": 10,
+        "descPlato": "Leche fresca o en polvo en mayor proporción que el café concentrado",
+        "disponible": true,
+        "id_plato": 21,
+        "id_tipo_plato": 5,
+        "imagen": "latte.jpg",
+        "nombre": "Latte ",
+        "precioVenta": 7.0
+    },
+    {
+        "constante": false,
+        "dcto": 10,
+        "descPlato": "01 deliciosa Cheese Burguer. 01 porción de papas fritas amarillas onduladas, 01 bebida de medio litro.",
+        "disponible": true,
+        "id_plato": 22,
+        "id_tipo_plato": 9,
+        "imagen": "meQuedoContigo.jpg",
+        "nombre": "Me Quedo Contigo",
+        "precioVenta": 25.0
+    },
+    {
+        "constante": false,
+        "dcto": 10,
+        "descPlato": "Porción de 06 deliciosas alitas BBQ, 01 porción de salchicha frankfurter, 01 porción de papas fritas amarillas onduladas, 01 hamburguesa Clasica.",
+        "disponible": true,
+        "id_plato": 23,
+        "id_tipo_plato": 9,
+        "imagen": "trioInfarto.jpg",
+        "nombre": "Trío de Infarto",
+        "precioVenta": 40.0
+    },
+    {
+        "constante": false,
+        "dcto": 10,
+        "descPlato": "02 Hamburguesas de 150 gr de carne , Queso Cheddar. tomate, lechuga y cebolla en rodajas. Además de 01 porción de deliciosas papas fritas amarillas onduladas",
+        "disponible": true,
+        "id_plato": 24,
+        "id_tipo_plato": 9,
+        "imagen": "partidaDoble.jpg",
+        "nombre": "02 Cheese Burguers",
+        "precioVenta": 40.0
+    },
+    {
+        "constante": false,
+        "dcto": 10,
+        "descPlato": "06 deliciosos tequeños rellenos con queso, 06  alitas Crispy y 01 porción de papas fritas amarillas onduladas.",
+        "disponible": true,
+        "id_plato": 25,
+        "id_tipo_plato": 9,
+        "imagen": "tequenoAlas.jpg",
+        "nombre": "Tequeño Te Quiero Con Alas",
+        "precioVenta": 30.0
+    },
+    {
+        "constante": false,
+        "dcto": 10,
+        "descPlato": " 01 Pechuga de Pollo + 01 delicioso Capuccino.",
+        "disponible": true,
+        "id_plato": 26,
+        "id_tipo_plato": 9,
+        "imagen": "loncheEjecutivo.jpg",
+        "nombre": "Tu Calientito Preferido",
+        "precioVenta": 25.0
+    },
+    {
+        "constante": false,
+        "dcto": 10,
+        "descPlato": "01 Cheese Buguer, 01 porción de deliciosas papas fritas amarillas onduladas y 06 tequeños rellenos con queso",
+        "disponible": true,
+        "id_plato": 27,
+        "id_tipo_plato": 9,
+        "imagen": "saciahambre.jpg",
+        "nombre": "Sacia Tu Hambre",
+        "precioVenta": 40.0
+    },
+    {
+        "constante": false,
+        "dcto": 10,
+        "descPlato": "01 hamburguesa de 150gr de carne , 01 porción de Papas amarillas fritas onduladas, Plátano Frito, Huevo Frito,Arroz blanco y abundantes cremas , y a eso súmale una gaseosa de medio litro.",
+        "disponible": true,
+        "id_plato": 28,
+        "id_tipo_plato": 9,
+        "imagen": "pobre.jpg",
+        "nombre": "Mi Jama Preferida",
+        "precioVenta": 25.0
+    }
 ]

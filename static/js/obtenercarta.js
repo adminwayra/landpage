@@ -1,17 +1,24 @@
-// Función para obtener los platos
-async function obtenerPlatos() {
-    try {
-        const response = await fetch('/platos'); // Llamada al endpoint de Flask
-        if (response.ok) {
-            const platos = await response.json(); // Parsear la respuesta JSON
-            mostrarPlatos(platos); // Mostrar los platos en el frontend
-        } else {
-            console.error('Error al obtener los platos');
+window.onload = function() {
+    // Obtenemos el contenedor con los productos desde el HTML
+    const productosElement = document.getElementById('platos');
+    
+    if (productosElement) {  // Verificar si el contenedor existe
+        const productosJSON = productosElement.getAttribute('data-platos');
+        console.log(productosElement);
+        console.log(productosJSON);
+
+        try {
+            // Parseamos el JSON desde el atributo 'data-productos'
+            const productos = JSON.parse(productosJSON);
+            mostrarPlatos(productos);
+        } catch (error) {
+            console.error("Error al parsear el JSON de productos:", error);
         }
-    } catch (error) {
-        console.error('Error:', error);
+    } else {
+        console.error("El elemento 'productos' no se encuentra en el DOM");
     }
-}
+};
+
 
 // Función para mostrar los platos en el HTML
 function mostrarPlatos(platos) {
@@ -50,5 +57,3 @@ function mostrarPlatos(platos) {
         /*menuContainer.innerHTML += platoHTML;*/
     });
 }
-// Llamar a la función para cargar los platos cuando se carga la página
-window.onload = obtenerPlatos;
